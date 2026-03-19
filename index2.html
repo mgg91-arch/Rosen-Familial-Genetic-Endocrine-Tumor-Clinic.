@@ -1,0 +1,1214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rosen Familial Endocrine Genetics Clinic | MedStar Georgetown</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Source+Sans+3:wght@300;400;500;600&family=Source+Serif+4:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #1a2744;
+    --navy-deep: #0f1a30;
+    --teal: #1b7a7a;
+    --teal-light: #22a2a2;
+    --teal-pale: #e8f4f4;
+    --gold: #c9a84c;
+    --gold-light: #f0d98a;
+    --cream: #faf8f4;
+    --warm-white: #ffffff;
+    --text-dark: #1a2744;
+    --text-mid: #3d4f6e;
+    --text-soft: #6b7fa3;
+    --border: #d8e2ef;
+    --shadow-sm: 0 2px 12px rgba(26,39,68,0.07);
+    --shadow-md: 0 8px 32px rgba(26,39,68,0.12);
+    --shadow-lg: 0 20px 60px rgba(26,39,68,0.16);
+    --radius: 4px;
+    --transition: all 0.28s cubic-bezier(0.4,0,0.2,1);
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Source Sans 3', sans-serif;
+    background: var(--cream);
+    color: var(--text-dark);
+    font-size: 16px;
+    line-height: 1.7;
+  }
+
+  /* ─── TOP BAR ─────────────────────────────────── */
+  .top-bar {
+    background: var(--navy-deep);
+    color: rgba(255,255,255,0.65);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    padding: 8px 0;
+    text-align: center;
+    position: relative;
+    z-index: 200;
+  }
+  .top-bar a { color: var(--gold-light); text-decoration: none; }
+
+  /* ─── NAV ─────────────────────────────────────── */
+  nav {
+    background: var(--warm-white);
+    border-bottom: 2px solid var(--teal);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: var(--shadow-sm);
+  }
+  .nav-inner {
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 72px;
+  }
+  .nav-brand { display: flex; flex-direction: column; line-height: 1.2; cursor: pointer; }
+  .nav-brand .clinic-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 17px; font-weight: 700;
+    color: var(--navy); letter-spacing: 0.01em;
+  }
+  .nav-brand .institution {
+    font-size: 11px; font-weight: 500;
+    color: var(--teal); letter-spacing: 0.08em; text-transform: uppercase;
+  }
+  .nav-links { display: flex; gap: 2px; list-style: none; }
+  .nav-links li a {
+    display: block; padding: 8px 14px;
+    font-size: 13px; font-weight: 600;
+    color: var(--text-mid); text-decoration: none;
+    border-radius: var(--radius); transition: var(--transition);
+    letter-spacing: 0.02em; white-space: nowrap;
+  }
+  .nav-links li a:hover, .nav-links li a.active { color: var(--teal); background: var(--teal-pale); }
+  .nav-appt { background: var(--teal) !important; color: white !important; border-radius: var(--radius) !important; padding: 9px 18px !important; }
+  .nav-appt:hover { background: var(--navy) !important; color: white !important; }
+
+  /* ─── PAGES ──────────────────────────────────── */
+  .page { display: none; }
+  .page.active { display: block; }
+
+  /* ══════════════════════════════════════════════
+     PHOTO HERO SYSTEM
+     Each page gets a .hero with a unique background-image.
+     The overlay is a layered gradient so text always reads.
+     To swap an image, find the matching CSS rule below and
+     replace the url(...) value with your own photo URL.
+  ══════════════════════════════════════════════ */
+  .hero {
+    position: relative;
+    overflow: hidden;
+    color: white;
+    padding: 90px 24px 80px;
+
+    /* Dark fallback gradient — shows if image hasn't loaded */
+    background-color: var(--navy-deep);
+
+    /* Instead of using CSS background-image, we render a dedicated <img> inside */
+    background-image: none !important;
+
+    /* The overlay is always on top of the photo:
+       first layer = dark gradient for text legibility
+       second layer = the photo itself */
+    background-blend-mode: multiply;
+  }
+
+  .hero-media {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+  }
+
+  .hero-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+  }
+
+  .hero-media img:hover {
+    transform: scale(1.02);
+  }
+
+  /* Shared overlay gradient (sits on top of every photo) */
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(
+      130deg,
+      rgba(10,18,36,0.55) 0%,
+      rgba(15,26,48,0.38) 50%,
+      rgba(20,60,60,0.30) 100%
+    );
+    z-index: 1;
+  }
+
+  /* Decorative radial glows — same as original */
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -20%; left: -5%;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(201,168,76,0.10) 0%, transparent 70%);
+    border-radius: 50%;
+    z-index: 1;
+  }
+
+  .hero-inner {
+    max-width: 1140px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2; /* above overlays */
+  }
+
+  /* ── Per-page background images ─────────────────
+     Replace the url(...) on each rule with your own photo.
+     Recommended: 1600×700px, compressed JPEG.
+  ─────────────────────────────────────────────── */
+
+  /* HOME — doctor consulting with patient / warm clinical setting */
+  /* REPLACE IMAGE: swap URL below for your own home hero photo */
+  #page-home .hero {
+    background-image: url('https://www.regionalcancercare.org/wp-content/uploads/2021/09/RCCA-neuroendocrine-tumors-768x517.jpg');
+    background-size: cover;
+    background-position: center 30%;
+  }
+
+  /* CONDITIONS — close-up of DNA helix / molecular biology */
+  /* REPLACE IMAGE: swap URL below for your conditions hero photo */
+  #page-conditions .hero {
+    background-image: url('https://images.unsplash.com/photo-1559757175-0eb30cd8c063?w=1600&q=80');
+    background-size: cover;
+    background-position: center center;
+  }
+
+  /* SCREENING — medical lab technician / genetic testing */
+  /* REPLACE IMAGE: swap URL below for your screening hero photo */
+  #page-screening .hero {
+    background-image: url('https://images.unsplash.com/photo-1582719508461-905c673771fd?w=1600&q=80');
+    background-size: cover;
+    background-position: center 40%;
+  }
+
+  /* TEAM — physicians in discussion / white coats */
+  /* REPLACE IMAGE: swap URL below for your team hero photo */
+  #page-team .hero {
+    background-image: url('https://images.unsplash.com/photo-1631217868264-e5b90bb7e133?w=1600&q=80');
+    background-size: cover;
+    background-position: center 25%;
+  }
+
+  /* RESEARCH — scientist pipetting in lab */
+  /* REPLACE IMAGE: swap URL below for your research hero photo */
+  #page-research .hero {
+    background-image: url('https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=1600&q=80');
+    background-size: cover;
+    background-position: center 45%;
+  }
+
+  /* RESOURCES — patients / family support / hands together */
+  /* REPLACE IMAGE: swap URL below for your resources hero photo */
+  #page-resources .hero {
+    background-image: url('https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=1600&q=80');
+    background-size: cover;
+    background-position: center 60%;
+  }
+
+  /* CONTACT — Georgetown campus / hospital exterior */
+  /* REPLACE IMAGE: swap URL below for your contact hero photo */
+  #page-contact .hero {
+    background-image: url('https://images.unsplash.com/photo-1504439468489-c8920d796a29?w=1600&q=80');
+    background-size: cover;
+    background-position: center 50%;
+  }
+
+  /* ── Hero text styles ──────────────────────────── */
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(27,122,122,0.30);
+    border: 1px solid rgba(27,122,122,0.55);
+    color: var(--teal-light);
+    font-size: 11px; font-weight: 600;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 6px 14px; border-radius: 20px; margin-bottom: 22px;
+    backdrop-filter: blur(4px);
+  }
+  .hero-badge::before { content: '⬡'; font-size: 14px; }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 6vw, 54px);
+    font-weight: 700; line-height: 1.18;
+    margin-bottom: 20px; max-width: 760px;
+    text-shadow: 0 2px 16px rgba(0,0,0,0.4);
+  }
+  .hero h1 em { font-style: italic; color: var(--gold-light); }
+
+  .hero-sub {
+    font-family: 'Source Serif 4', serif;
+    font-size: 19px; font-weight: 300; font-style: italic;
+    color: rgba(255,255,255,0.88);
+    max-width: 600px; margin-bottom: 36px; line-height: 1.6;
+    text-shadow: 0 1px 8px rgba(0,0,0,0.3);
+  }
+
+  .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
+
+  .btn-primary {
+    display: inline-block; background: var(--teal); color: white;
+    font-size: 14px; font-weight: 600; letter-spacing: 0.04em;
+    padding: 14px 28px; border-radius: var(--radius);
+    text-decoration: none; cursor: pointer; border: none;
+    transition: var(--transition);
+  }
+  .btn-primary:hover { background: var(--teal-light); transform: translateY(-1px); box-shadow: 0 8px 24px rgba(27,122,122,0.4); }
+
+  .btn-outline {
+    display: inline-block; background: rgba(255,255,255,0.1);
+    color: white; font-size: 14px; font-weight: 600; letter-spacing: 0.04em;
+    padding: 14px 28px; border-radius: var(--radius);
+    border: 1.5px solid rgba(255,255,255,0.45);
+    text-decoration: none; cursor: pointer; transition: var(--transition);
+    backdrop-filter: blur(4px);
+  }
+  .btn-outline:hover { border-color: white; background: rgba(255,255,255,0.15); }
+
+  .hero-stats {
+    display: flex; gap: 40px; margin-top: 56px; padding-top: 40px;
+    border-top: 1px solid rgba(255,255,255,0.15); flex-wrap: wrap;
+  }
+  .stat-item { text-align: left; }
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 36px; font-weight: 700; color: var(--gold-light); line-height: 1;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+  }
+  .stat-label {
+    font-size: 12px; color: rgba(255,255,255,0.65); font-weight: 500;
+    letter-spacing: 0.05em; text-transform: uppercase; margin-top: 4px;
+  }
+
+  /* Photo credit strip — optional, appears bottom-right of hero */
+  .hero-photo-credit {
+    position: absolute; bottom: 12px; right: 20px;
+    font-size: 10px; color: rgba(255,255,255,0.35);
+    z-index: 2; letter-spacing: 0.03em;
+  }
+
+  /* ─── SECTION COMMONS ─────────────────────────── */
+  section { padding: 72px 24px; }
+  .section-inner { max-width: 1140px; margin: 0 auto; }
+  .section-label {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--teal); margin-bottom: 10px;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(26px, 4vw, 40px); font-weight: 700;
+    color: var(--navy); line-height: 1.25; margin-bottom: 16px;
+  }
+  .section-sub {
+    font-size: 17px; color: var(--text-mid); max-width: 640px;
+    line-height: 1.7; margin-bottom: 52px;
+    font-family: 'Source Serif 4', serif; font-style: italic; font-weight: 300;
+  }
+
+  /* ─── ABOUT / HIGHLIGHT CARDS ─────────────────── */
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; }
+  .about-text p { color: var(--text-mid); margin-bottom: 18px; line-height: 1.8; }
+  .about-highlights { display: flex; flex-direction: column; gap: 16px; }
+  .highlight-card {
+    background: var(--warm-white); border: 1px solid var(--border);
+    border-left: 4px solid var(--teal); border-radius: var(--radius);
+    padding: 20px 22px; transition: var(--transition); box-shadow: var(--shadow-sm);
+  }
+  .highlight-card:hover { border-left-color: var(--gold); box-shadow: var(--shadow-md); transform: translateX(4px); }
+  .highlight-card h4 { font-family: 'Playfair Display', serif; font-size: 16px; color: var(--navy); margin-bottom: 6px; }
+  .highlight-card p { font-size: 14px; color: var(--text-mid); line-height: 1.6; }
+
+  /* ─── REFERRAL BOX ────────────────────────────── */
+  .referral-box {
+    background: linear-gradient(135deg, var(--navy) 0%, #1e3060 100%);
+    color: white; border-radius: 8px; padding: 44px 48px; margin-top: 60px;
+    display: grid; grid-template-columns: 1fr auto; gap: 32px;
+    align-items: center; box-shadow: var(--shadow-lg);
+  }
+  .referral-box h3 { font-family: 'Playfair Display', serif; font-size: 22px; margin-bottom: 10px; color: var(--gold-light); }
+  .referral-box p { font-size: 15px; color: rgba(255,255,255,0.8); max-width: 540px; }
+
+  .external-link-box {
+    background: linear-gradient(135deg, rgba(27,122,122,0.25), rgba(201,168,76,0.15));
+    border: 1px solid rgba(27,122,122,0.35);
+    border-radius: 8px; padding: 40px 46px; margin-top: 40px;
+    display: grid; grid-template-columns: 1fr auto; gap: 32px;
+    align-items: center; box-shadow: var(--shadow-sm);
+  }
+  .external-link-box h3 { font-family: 'Playfair Display', serif; font-size: 20px; margin-bottom: 10px; color: var(--navy); }
+  .external-link-box p { font-size: 15px; color: var(--text-mid); max-width: 520px; }
+  .external-link-box a { text-decoration: none; }
+
+  /* ─── CONDITIONS ─────────────────────────────── */
+  .conditions-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 24px; }
+  .condition-card {
+    background: var(--warm-white); border: 1px solid var(--border);
+    border-radius: 6px; padding: 28px; transition: var(--transition);
+    box-shadow: var(--shadow-sm); cursor: pointer; position: relative; overflow: hidden;
+  }
+  .condition-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: var(--teal); transform: scaleX(0); transition: var(--transition); transform-origin: left;
+  }
+  .condition-card:hover::before { transform: scaleX(1); }
+  .condition-card:hover { box-shadow: var(--shadow-md); transform: translateY(-3px); border-color: var(--teal); }
+  .condition-gene {
+    display: inline-block; background: var(--teal-pale); color: var(--teal);
+    font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+    padding: 3px 10px; border-radius: 12px; margin-bottom: 14px;
+  }
+  .condition-card h3 { font-family: 'Playfair Display', serif; font-size: 20px; color: var(--navy); margin-bottom: 10px; line-height: 1.3; }
+  .condition-card p { font-size: 14px; color: var(--text-mid); line-height: 1.7; margin-bottom: 16px; }
+  .condition-organs { display: flex; flex-wrap: wrap; gap: 6px; }
+  .organ-tag {
+    background: #f0f4fa; color: var(--navy); font-size: 12px; font-weight: 500;
+    padding: 3px 10px; border-radius: 12px; border: 1px solid var(--border);
+  }
+
+  /* ─── SCREENING ──────────────────────────────── */
+  .process-track { position: relative; max-width: 800px; margin: 0 auto; }
+  .process-track::before {
+    content: ''; position: absolute; left: 31px; top: 0; bottom: 0;
+    width: 2px; background: linear-gradient(to bottom, var(--teal), var(--navy)); opacity: 0.25;
+  }
+  .process-step { display: flex; gap: 28px; margin-bottom: 36px; align-items: flex-start; }
+  .step-num {
+    flex-shrink: 0; width: 64px; height: 64px; border-radius: 50%;
+    background: var(--navy); color: white;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700;
+    box-shadow: 0 4px 16px rgba(26,39,68,0.25); border: 3px solid var(--warm-white);
+    position: relative; z-index: 1;
+  }
+  .step-body {
+    background: var(--warm-white); border: 1px solid var(--border);
+    border-radius: 6px; padding: 24px 28px; flex: 1;
+    box-shadow: var(--shadow-sm); transition: var(--transition);
+  }
+  .step-body:hover { box-shadow: var(--shadow-md); border-color: var(--teal); }
+  .step-body h3 { font-family: 'Playfair Display', serif; font-size: 20px; color: var(--navy); margin-bottom: 10px; }
+  .step-body p { font-size: 15px; color: var(--text-mid); line-height: 1.75; }
+  .step-body ul { margin-top: 12px; padding-left: 18px; color: var(--text-mid); font-size: 14px; }
+  .step-body ul li { margin-bottom: 6px; line-height: 1.65; }
+  .step-tag {
+    display: inline-block; background: var(--gold); color: white;
+    font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+    padding: 3px 10px; border-radius: 12px; margin-bottom: 12px;
+  }
+  .panel-box {
+    background: linear-gradient(135deg, var(--teal-pale), #d4eaea);
+    border: 1px solid rgba(27,122,122,0.2); border-radius: 8px; padding: 36px 40px; margin-top: 52px;
+  }
+  .panel-box h3 { font-family: 'Playfair Display', serif; font-size: 22px; color: var(--navy); margin-bottom: 14px; }
+  .gene-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+  .gene-chip {
+    background: var(--teal); color: white; font-size: 12px; font-weight: 700;
+    letter-spacing: 0.06em; padding: 5px 12px; border-radius: 4px;
+  }
+
+  /* ─── TEAM ───────────────────────────────────── */
+  .team-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 24px; }
+  .team-card {
+    background: var(--warm-white); border: 1px solid var(--border);
+    border-radius: 6px; overflow: hidden; transition: var(--transition); box-shadow: var(--shadow-sm);
+  }
+  .team-card:hover { box-shadow: var(--shadow-md); transform: translateY(-4px); }
+  .team-photo {
+    width: 100%; height: 180px;
+    background: linear-gradient(135deg, var(--navy) 0%, var(--teal) 100%);
+    display: flex; align-items: center; justify-content: center;
+    position: relative; overflow: hidden;
+  }
+  .team-photo-initials {
+    font-family: 'Playfair Display', serif; font-size: 44px; font-weight: 700;
+    color: white; opacity: 0.6;
+  }
+  .team-photo-accent {
+    position: absolute; bottom: -20px; right: -20px;
+    width: 100px; height: 100px; border-radius: 50%;
+    background: rgba(201,168,76,0.2);
+  }
+  .team-photo-img { width: 100%; height: 100%; object-fit: contain; background: white; }
+  .team-info { padding: 22px; }
+  .team-info h3 { font-family: 'Playfair Display', serif; font-size: 18px; color: var(--navy); margin-bottom: 4px; }
+  .team-title { font-size: 13px; color: var(--teal); font-weight: 600; letter-spacing: 0.03em; margin-bottom: 12px; }
+  .team-info p { font-size: 13.5px; color: var(--text-mid); line-height: 1.65; }
+  .team-focus { margin-top: 14px; display: flex; flex-wrap: wrap; gap: 5px; }
+  .focus-tag { background: var(--teal-pale); color: var(--teal); font-size: 11px; font-weight: 600; padding: 3px 9px; border-radius: 12px; }
+
+  /* ─── RESEARCH PAGE ──────────────────────────── */
+  .research-focus-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 24px; margin-bottom: 64px; }
+  .research-focus-card {
+    background: var(--warm-white); border: 1px solid var(--border);
+    border-radius: 6px; padding: 32px 28px; transition: var(--transition);
+    box-shadow: var(--shadow-sm); position: relative; overflow: hidden;
+  }
+  .research-focus-card::after {
+    content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, var(--teal), var(--gold));
+    transform: scaleX(0); transform-origin: left; transition: var(--transition);
+  }
+  .research-focus-card:hover::after { transform: scaleX(1); }
+  .research-focus-card:hover { box-shadow: var(--shadow-md); transform: translateY(-3px); }
+  .research-focus-icon {
+    width: 52px; height: 52px;
+    background: linear-gradient(135deg, var(--teal-pale), #d4eaea);
+    border-radius: 10px; display: flex; align-items: center; justify-content: center;
+    font-size: 24px; margin-bottom: 18px; border: 1px solid rgba(27,122,122,0.15);
+  }
+  .research-focus-card h3 { font-family: 'Playfair Display', serif; font-size: 19px; color: var(--navy); margin-bottom: 10px; line-height: 1.3; }
+  .research-focus-card p { font-size: 14px; color: var(--text-mid); line-height: 1.75; }
+  .trials-list { display: flex; flex-direction: column; gap: 20px; margin-bottom: 64px; }
+  .trial-card {
+    background: var(--warm-white); border: 1px solid var(--border);
+    border-radius: 6px; padding: 28px 32px; box-shadow: var(--shadow-sm);
+    transition: var(--transition); display: grid;
+    grid-template-columns: auto 1fr auto; gap: 24px; align-items: start;
+  }
+  .trial-card:hover { box-shadow: var(--shadow-md); border-color: var(--teal); }
+  .trial-status { display: flex; flex-direction: column; align-items: center; gap: 6px; min-width: 80px; }
+  .status-dot { width: 12px; height: 12px; border-radius: 50%; margin-top: 4px; }
+  .status-dot.enrolling { background: #2ea04f; box-shadow: 0 0 0 3px rgba(46,160,79,0.2); }
+  .status-dot.active { background: var(--teal); box-shadow: 0 0 0 3px rgba(27,122,122,0.2); }
+  .status-dot.completed { background: var(--gold); box-shadow: 0 0 0 3px rgba(201,168,76,0.2); }
+  .status-label { font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; text-align: center; }
+  .status-label.enrolling { color: #2ea04f; }
+  .status-label.active { color: var(--teal); }
+  .status-label.completed { color: var(--gold); }
+  .trial-body h3 { font-family: 'Playfair Display', serif; font-size: 19px; color: var(--navy); margin-bottom: 6px; line-height: 1.3; }
+  .trial-meta { display: flex; flex-wrap: wrap; gap: 14px; margin-bottom: 12px; }
+  .trial-meta-item { font-size: 12px; color: var(--text-soft); font-weight: 500; display: flex; align-items: center; gap: 4px; }
+  .trial-meta-item strong { color: var(--text-mid); }
+  .trial-body p { font-size: 14px; color: var(--text-mid); line-height: 1.75; }
+  .trial-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+  .trial-tag { background: var(--teal-pale); color: var(--teal); font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 12px; }
+  .trial-action { display: flex; flex-direction: column; gap: 8px; align-items: flex-end; min-width: 130px; }
+  .trial-action a {
+    display: inline-block; background: var(--teal-pale); color: var(--teal);
+    font-size: 12px; font-weight: 700; letter-spacing: 0.04em; padding: 8px 14px;
+    border-radius: var(--radius); text-decoration: none;
+    border: 1px solid rgba(27,122,122,0.2); transition: var(--transition); white-space: nowrap;
+  }
+  .trial-action a:hover { background: var(--teal); color: white; }
+  .trial-nct { font-size: 11px; color: var(--text-soft); font-family: monospace; text-align: right; }
+  .publications-list { display: flex; flex-direction: column; gap: 16px; }
+  .publication-item {
+    background: var(--warm-white); border: 1px solid var(--border);
+    border-left: 4px solid var(--teal); border-radius: var(--radius);
+    padding: 22px 26px; transition: var(--transition); box-shadow: var(--shadow-sm);
+  }
+  .publication-item:hover { border-left-color: var(--gold); box-shadow: var(--shadow-md); transform: translateX(4px); }
+  .pub-meta { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; flex-wrap: wrap; }
+  .pub-year { background: var(--navy); color: var(--gold-light); font-size: 11px; font-weight: 700; padding: 2px 9px; border-radius: 3px; letter-spacing: 0.04em; }
+  .pub-journal { font-size: 12px; color: var(--teal); font-weight: 600; font-style: italic; }
+  .pub-type { font-size: 11px; color: var(--text-soft); background: #f0f4fa; padding: 2px 8px; border-radius: 10px; font-weight: 500; border: 1px solid var(--border); }
+  .publication-item h4 { font-family: 'Playfair Display', serif; font-size: 16px; color: var(--navy); margin-bottom: 6px; line-height: 1.4; }
+  .publication-item p { font-size: 13.5px; color: var(--text-mid); line-height: 1.65; }
+  .pub-authors { font-size: 13px; color: var(--text-soft); margin-top: 8px; font-style: italic; }
+  .pub-authors strong { color: var(--navy); font-style: normal; }
+  .pub-link { display: inline-flex; align-items: center; gap: 4px; margin-top: 10px; color: var(--teal); font-size: 12px; font-weight: 600; text-decoration: none; }
+  .pub-link::after { content: '↗'; }
+  .pub-link:hover { color: var(--navy); }
+  .registry-banner {
+    background: linear-gradient(135deg, #0f1a30 0%, var(--navy) 60%, #1b4a4a 100%);
+    border-radius: 8px; padding: 48px 52px; color: white;
+    position: relative; overflow: hidden; margin-top: 64px;
+  }
+  .registry-banner::before { content: ''; position: absolute; top: -60px; right: -60px; width: 300px; height: 300px; border-radius: 50%; background: radial-gradient(circle, rgba(27,122,122,0.2) 0%, transparent 70%); }
+  .registry-banner::after { content: ''; position: absolute; bottom: -40px; left: -40px; width: 200px; height: 200px; border-radius: 50%; background: radial-gradient(circle, rgba(201,168,76,0.15) 0%, transparent 70%); }
+  .registry-banner-inner { position: relative; z-index: 1; display: grid; grid-template-columns: 1fr auto; gap: 40px; align-items: center; }
+  .registry-banner h3 { font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 700; color: var(--gold-light); margin-bottom: 12px; }
+  .registry-banner p { font-size: 15px; color: rgba(255,255,255,0.82); max-width: 580px; line-height: 1.75; }
+  .registry-stats { display: flex; gap: 36px; margin-top: 24px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.12); }
+  .registry-stat-num { font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700; color: var(--teal-light); line-height: 1; }
+  .registry-stat-label { font-size: 11px; color: rgba(255,255,255,0.55); font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; margin-top: 4px; }
+  .collab-row { background: var(--warm-white); border: 1px solid var(--border); border-radius: 8px; padding: 32px 40px; margin-top: 48px; box-shadow: var(--shadow-sm); }
+  .collab-row h4 { font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-soft); margin-bottom: 20px; text-align: center; }
+  .collab-list { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
+  .collab-pill { background: var(--cream); border: 1px solid var(--border); border-radius: 20px; padding: 8px 18px; font-size: 13px; font-weight: 600; color: var(--text-mid); white-space: nowrap; }
+
+  /* ─── RESOURCES ──────────────────────────────── */
+  .resources-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 24px; }
+  .resource-card { background: var(--warm-white); border: 1px solid var(--border); border-radius: 6px; padding: 28px; transition: var(--transition); box-shadow: var(--shadow-sm); cursor: pointer; }
+  .resource-card:hover { box-shadow: var(--shadow-md); border-color: var(--teal); }
+  .resource-icon { width: 48px; height: 48px; background: var(--teal-pale); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 22px; margin-bottom: 16px; }
+  .resource-card h3 { font-family: 'Playfair Display', serif; font-size: 18px; color: var(--navy); margin-bottom: 10px; }
+  .resource-card p { font-size: 14px; color: var(--text-mid); line-height: 1.7; }
+  .resource-link { display: inline-flex; align-items: center; gap: 6px; margin-top: 16px; color: var(--teal); font-size: 13px; font-weight: 600; text-decoration: none; letter-spacing: 0.03em; }
+  .resource-link::after { content: '→'; }
+
+  /* ─── CONTACT ────────────────────────────────── */
+  .contact-layout { display: grid; grid-template-columns: 1.1fr 1fr; gap: 56px; align-items: start; }
+  .contact-block { margin-bottom: 32px; }
+  .contact-block h4 { font-family: 'Playfair Display', serif; font-size: 17px; color: var(--navy); margin-bottom: 10px; padding-bottom: 8px; border-bottom: 1px solid var(--border); }
+  .contact-block p, .contact-block a { font-size: 15px; color: var(--text-mid); line-height: 1.75; text-decoration: none; display: block; }
+  .contact-block a:hover { color: var(--teal); }
+  .contact-form { background: var(--warm-white); border: 1px solid var(--border); border-radius: 8px; padding: 36px; box-shadow: var(--shadow-md); }
+  .contact-form h3 { font-family: 'Playfair Display', serif; font-size: 24px; color: var(--navy); margin-bottom: 24px; }
+  .form-group { margin-bottom: 18px; }
+  .form-group label { display: block; font-size: 13px; font-weight: 600; color: var(--navy); margin-bottom: 6px; letter-spacing: 0.03em; }
+  .form-group input, .form-group select, .form-group textarea {
+    width: 100%; padding: 12px 14px; border: 1.5px solid var(--border);
+    border-radius: var(--radius); font-family: 'Source Sans 3', sans-serif;
+    font-size: 15px; color: var(--text-dark); background: var(--cream); outline: none; transition: var(--transition);
+  }
+  .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--teal); background: white; box-shadow: 0 0 0 3px rgba(27,122,122,0.1); }
+  .form-group textarea { height: 100px; resize: vertical; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .form-note { font-size: 12px; color: var(--text-soft); margin-top: 14px; line-height: 1.6; }
+
+  /* ─── INFO BAND & FOOTER ─────────────────────── */
+  .info-band { background: var(--navy-deep); color: white; padding: 14px 24px; text-align: center; font-size: 14px; }
+  .info-band strong { color: var(--gold-light); }
+  .info-band a { color: var(--teal-light); text-decoration: none; margin: 0 8px; }
+  footer { background: var(--navy-deep); color: rgba(255,255,255,0.65); padding: 48px 24px 28px; font-size: 13px; }
+  .footer-inner { max-width: 1140px; margin: 0 auto; display: grid; grid-template-columns: 1.6fr 1fr 1fr; gap: 48px; padding-bottom: 32px; border-bottom: 1px solid rgba(255,255,255,0.1); margin-bottom: 24px; }
+  .footer-brand h3 { font-family: 'Playfair Display', serif; font-size: 17px; color: white; margin-bottom: 8px; }
+  .footer-brand p { line-height: 1.7; font-size: 13px; }
+  footer h4 { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-bottom: 12px; }
+  footer ul { list-style: none; }
+  footer ul li { margin-bottom: 8px; }
+  footer ul li a { color: rgba(255,255,255,0.65); text-decoration: none; transition: var(--transition); cursor: pointer; }
+  footer ul li a:hover { color: var(--teal-light); }
+  .footer-bottom { max-width: 1140px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: rgba(255,255,255,0.4); flex-wrap: wrap; gap: 8px; }
+  .medstar-badge { display: inline-flex; align-items: center; gap: 6px; color: var(--gold-light); font-size: 12px; font-weight: 600; }
+
+  /* ─── RESPONSIVE ─────────────────────────────── */
+  @media (max-width: 900px) {
+    .about-grid, .contact-layout { grid-template-columns: 1fr; gap: 36px; }
+    .referral-box { grid-template-columns: 1fr; }
+    .footer-inner { grid-template-columns: 1fr 1fr; }
+    .form-row { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+    .trial-card { grid-template-columns: 1fr; }
+    .trial-status { flex-direction: row; align-items: center; }
+    .trial-action { flex-direction: row; align-items: center; min-width: unset; }
+    .registry-banner-inner { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 600px) {
+    .footer-inner { grid-template-columns: 1fr; gap: 28px; }
+    .hero-stats { gap: 24px; }
+    .registry-stats { gap: 20px; flex-wrap: wrap; }
+  }
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="top-bar">
+  MedStar Georgetown University Hospital &nbsp;|&nbsp;
+  <a href="#" onclick="showPage('contact')">Schedule Appointment: 202-444-8525</a>
+  &nbsp;|&nbsp; Referrals: <a href="#">genetics.referral@medstar.net</a>
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <div class="nav-brand" onclick="showPage('home')">
+      <span class="clinic-name">Rosen Familial Endocrine Genetics Clinic</span>
+      <span class="institution">MedStar Georgetown University Hospital</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="#" onclick="showPage('home')" id="nav-home" class="active">Home</a></li>
+      <li><a href="#" onclick="showPage('conditions')" id="nav-conditions">Conditions & Syndromes</a></li>
+      <li><a href="#" onclick="showPage('screening')" id="nav-screening">Genetic Screening</a></li>
+      <li><a href="#" onclick="showPage('team')" id="nav-team">Meet the Team</a></li>
+      <li><a href="#" onclick="showPage('research')" id="nav-research">Our Research</a></li>
+      <li><a href="#" onclick="showPage('resources')" id="nav-resources">Patient Resources</a></li>
+      <li><a href="#" onclick="showPage('contact')" id="nav-contact" class="nav-appt">Appointments</a></li>
+      
+    </ul>
+  </div>
+</nav>
+
+
+<!-- ══════════════════════════════════════════════
+     HOME
+══════════════════════════════════════════════ -->
+<div id="page-home" class="page active">
+  <div class="hero">
+    <div class="hero-media">
+      <!-- Replace the src below with your own photo URL (recommend 1600×700px) -->
+      <img src="https://images.unsplash.com/photo-1511174511562-5f7f18b87297?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80" alt="Doctor consulting patient">
+    </div>
+    <!--
+      HOME HERO IMAGE
+      To replace: edit the <img> src inside .hero-media above
+    -->
+    <div class="hero-inner">
+      <div class="hero-badge">Specialized Genetic Oncology Program</div>
+      <h1>Hereditary Endocrine<br><em>Tumor Genetics</em> at Georgetown</h1>
+      <p class="hero-sub">Comprehensive genetic screening, risk assessment, and coordinated family care for hereditary endocrine tumor syndromes — led by Dr. Jennifer Rosen.</p>
+      <div class="hero-actions">
+        <button class="btn-primary" onclick="showPage('contact')">Request an Appointment</button>
+        <button class="btn-outline" onclick="showPage('screening')">Our Screening Process</button>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-item"><div class="stat-num">6+</div><div class="stat-label">Hereditary Syndromes</div></div>
+        <div class="stat-item"><div class="stat-num">24</div><div class="stat-label">Genes Screened</div></div>
+        <div class="stat-item"><div class="stat-num">100%</div><div class="stat-label">Family-Centered Care</div></div>
+        <div class="stat-item"><div class="stat-num">NGS</div><div class="stat-label">Next-Gen Sequencing</div></div>
+      </div>
+    </div>
+    <div class="hero-photo-credit">Photo: Unsplash · replace via CSS #page-home .hero background-image</div>
+  </div>
+
+  <section>
+    <div class="section-inner">
+      <div class="about-grid">
+        <div class="about-text">
+          <div class="section-label">About Our Program</div>
+          <h2 class="section-title">A Clinic Built Around Families, Not Just Patients</h2>
+          <p>The Rosen Familial Endocrine Genetics Clinic at MedStar Georgetown University Hospital is a dedicated program for the identification, evaluation, and long-term management of individuals and families with hereditary endocrine tumor syndromes.</p>
+          <p>Led by Dr. Jennifer Rosen, our clinic integrates advanced next-generation sequencing with compassionate, individualized genetic counseling. We work closely with endocrinology, surgery, and oncology teams to ensure every patient receives seamlessly coordinated care.</p>
+          <p>Because hereditary endocrine conditions affect entire families, our program extends its scope to at-risk relatives — offering proactive screening and surveillance before tumors develop. Early identification saves lives.</p>
+          <br>
+          <button class="btn-primary" onclick="showPage('conditions')">View Conditions We Treat →</button>
+        </div>
+        <div class="about-highlights">
+          <div class="highlight-card"><h4>Genetic Risk Assessment</h4><p>Thorough review of personal and family history to determine hereditary risk for endocrine tumors, with tailored recommendations for genetic testing.</p></div>
+          <div class="highlight-card"><h4>Multigene Panel Testing</h4><p>We offer comprehensive 24-gene hereditary endocrine cancer panels using next-generation sequencing, detecting single nucleotide and copy number variants.</p></div>
+          <div class="highlight-card"><h4>Cascade Family Screening</h4><p>Once a pathogenic variant is identified, we coordinate targeted testing for first- and second-degree relatives, enabling early detection and prevention.</p></div>
+          <div class="highlight-card"><h4>Multidisciplinary Coordination</h4><p>Our genetic counselors work hand-in-hand with endocrinologists, surgeons, and oncologists to deliver unified, evidence-based care plans for each patient.</p></div>
+        </div>
+      </div>
+      <div class="referral-box">
+        <div>
+          <h3>Are You at Risk? Consider Genetic Counseling.</h3>
+          <p>You may benefit from our program if you or a family member has a history of thyroid cancer, parathyroid disease, pituitary tumors, pheochromocytoma, paraganglioma, or pancreatic neuroendocrine tumors — or if a pathogenic variant has already been identified in your family.</p>
+        </div>
+        <button class="btn-primary" onclick="showPage('contact')" style="white-space:nowrap;">Schedule a Consultation</button>
+      </div>
+    </div>
+  </section>
+</div>
+
+
+<!-- ══════════════════════════════════════════════
+     CONDITIONS
+══════════════════════════════════════════════ -->
+<div id="page-conditions" class="page">
+  <div class="hero" style="padding:64px 24px 56px;">
+    <div class="hero-media">
+      <!-- Replace the src below with your own image URL (recommend 1600×700px) -->
+      <img src="https://images.unsplash.com/photo-1559757175-0eb30cd8c063?w=1600&q=80" alt="DNA helix close-up">
+    </div>
+    <!--
+      CONDITIONS HERO IMAGE
+      To replace: edit the <img> src inside .hero-media above
+    -->
+    <div class="hero-inner">
+      <div class="hero-badge">Clinical Focus Areas</div>
+      <h1>Hereditary Endocrine<br><em>Syndromes & Conditions</em></h1>
+      <p class="hero-sub">We specialize in the genetic evaluation and long-term surveillance of the most clinically significant inherited endocrine tumor syndromes.</p>
+    </div>
+    <div class="hero-photo-credit">Photo: Unsplash · replace via CSS #page-conditions .hero background-image</div>
+  </div>
+
+  <section>
+    <div class="section-inner">
+      <div class="section-label">Syndromes We Evaluate</div>
+      <h2 class="section-title">Conditions Managed at Our Clinic</h2>
+      <p class="section-sub">Each syndrome below has a defined hereditary basis. Early genetic identification allows us to implement surveillance before tumors become symptomatic.</p>
+      <div class="conditions-grid">
+        <div class="condition-card"><div class="condition-gene">Gene: MEN1 (Menin)</div><h3>Multiple Endocrine Neoplasia Type 1 (MEN1)</h3><p>MEN1 is an autosomal dominant condition caused by mutations in the <em>MEN1</em> tumor suppressor gene. Penetrance is approximately 80% by age 50.</p><div class="condition-organs"><span class="organ-tag">Parathyroid</span><span class="organ-tag">Pituitary</span><span class="organ-tag">Pancreatic NETs</span><span class="organ-tag">Adrenal</span></div></div>
+        <div class="condition-card"><div class="condition-gene">Gene: RET Proto-Oncogene</div><h3>Multiple Endocrine Neoplasia Type 2 (MEN2A / 2B)</h3><p>MEN2 is caused by activating mutations in the <em>RET</em> gene. MEN2B is the most aggressive subtype. Nearly all patients develop medullary thyroid cancer.</p><div class="condition-organs"><span class="organ-tag">Medullary Thyroid Cancer</span><span class="organ-tag">Pheochromocytoma</span><span class="organ-tag">Parathyroid</span></div></div>
+        <div class="condition-card"><div class="condition-gene">Gene: PTEN</div><h3>Cowden Syndrome / PTEN Hamartoma Tumor Syndrome</h3><p>Cowden syndrome results from germline <em>PTEN</em> mutations and predisposes individuals to thyroid tumors, breast cancer, and endometrial cancer.</p><div class="condition-organs"><span class="organ-tag">Thyroid (Follicular/Papillary)</span><span class="organ-tag">Breast</span><span class="organ-tag">Endometrium</span></div></div>
+        <div class="condition-card"><div class="condition-gene">Gene: VHL</div><h3>Von Hippel-Lindau (VHL) Syndrome</h3><p>VHL syndrome is an autosomal dominant condition predisposing to pheochromocytoma, renal cell carcinoma, and hemangioblastomas of the CNS and retina.</p><div class="condition-organs"><span class="organ-tag">Pheochromocytoma</span><span class="organ-tag">Renal Cell Carcinoma</span><span class="organ-tag">Pancreatic NETs</span><span class="organ-tag">CNS Tumors</span></div></div>
+        <div class="condition-card"><div class="condition-gene">Genes: SDHA/B/C/D, SDHAF2</div><h3>Hereditary Pheochromocytoma / Paraganglioma Syndrome</h3><p>Up to 30% of pheochromocytomas and paragangliomas have an underlying germline mutation — most frequently in the SDH gene family.</p><div class="condition-organs"><span class="organ-tag">Adrenal (Pheochromocytoma)</span><span class="organ-tag">Paraganglioma</span><span class="organ-tag">Head & Neck</span></div></div>
+        <div class="condition-card"><div class="condition-gene">Gene: Multiple / Unknown</div><h3>Familial Non-Medullary Thyroid Cancer (FNMTC)</h3><p>Approximately 5% of non-medullary thyroid cancers cluster in families. Evaluation is recommended when two or more first-degree relatives are affected.</p><div class="condition-organs"><span class="organ-tag">Papillary Thyroid Cancer</span><span class="organ-tag">Follicular Thyroid Cancer</span></div></div>
+        <div class="condition-card"><div class="condition-gene">Gene: CDKN1B</div><h3>Multiple Endocrine Neoplasia Type 4 (MEN4)</h3><p>A rare syndrome caused by germline <em>CDKN1B</em> mutations, presenting with primary hyperparathyroidism and anterior pituitary adenomas.</p><div class="condition-organs"><span class="organ-tag">Parathyroid</span><span class="organ-tag">Pituitary Adenoma</span><span class="organ-tag">Adrenal</span></div></div>
+        <div class="condition-card"><div class="condition-gene">Gene: CDC73 (HRPT2)</div><h3>Hyperparathyroidism-Jaw Tumor Syndrome (HPT-JT)</h3><p>HPT-JT is a rare autosomal dominant syndrome caused by <em>CDC73</em> mutations, carrying ~15% risk of parathyroid carcinoma.</p><div class="condition-organs"><span class="organ-tag">Parathyroid Carcinoma</span><span class="organ-tag">Jaw Fibromas</span><span class="organ-tag">Kidney Tumors</span></div></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+
+<!-- ══════════════════════════════════════════════
+     SCREENING
+══════════════════════════════════════════════ -->
+<div id="page-screening" class="page">
+  <div class="hero" style="padding:64px 24px 56px;">
+    <div class="hero-media">
+      <!-- Replace the src below with your own image URL (recommend 1600×700px) -->
+      <img src="https://images.unsplash.com/photo-1582719508461-905c673771fd?w=1600&q=80" alt="Laboratory testing">
+    </div>
+    <!--
+      SCREENING HERO IMAGE
+      To replace: edit the <img> src inside .hero-media above
+    -->
+    <div class="hero-inner">
+      <div class="hero-badge">Our Clinical Process</div>
+      <h1>Genetic Screening:<br><em>From Referral to Results</em></h1>
+      <p class="hero-sub">A step-by-step, patient-centered approach to identifying hereditary endocrine tumor risk — with clarity at every stage.</p>
+    </div>
+    <div class="hero-photo-credit">Photo: Unsplash · replace via CSS #page-screening .hero background-image</div>
+  </div>
+
+  <section>
+    <div class="section-inner">
+      <div class="section-label">Step-by-Step Process</div>
+      <h2 class="section-title">How Our Screening Program Works</h2>
+      <p class="section-sub">From your first appointment to long-term family surveillance, every step is designed with transparency and precision.</p>
+      <div class="process-track">
+        <div class="process-step"><div class="step-num">1</div><div class="step-body"><div class="step-tag">Intake</div><h3>Referral & Initial Intake</h3><p>Patients are referred by their primary care physician, endocrinologist, oncologist, or surgeon — or may self-refer. Accepted indications include:</p><ul><li>Personal history of medullary thyroid cancer, pheochromocytoma, paraganglioma, or parathyroid disease</li><li>Known pathogenic variant in an endocrine tumor gene within the family</li><li>Two or more first-degree relatives with endocrine tumors</li><li>Early-onset endocrine tumor (&lt;40 years of age)</li><li>Multiple primary endocrine tumor diagnoses in a single individual</li></ul></div></div>
+        <div class="process-step"><div class="step-num">2</div><div class="step-body"><div class="step-tag">Consultation</div><h3>Comprehensive Genetics Consultation</h3><p>Your first appointment is with one of our certified genetic counselors and, when appropriate, Dr. Rosen. We review a detailed three-generation pedigree, evaluate clinical history, discuss inheritance patterns, and address psychosocial concerns.</p></div></div>
+        <div class="process-step"><div class="step-num">3</div><div class="step-body"><div class="step-tag">Testing</div><h3>Multigene Panel Genetic Testing</h3><p>Next-generation sequencing analyzes up to 24 genes via blood or saliva sample. Results in 2–4 weeks. Detects SNVs and CNVs, classified per ACMG/AMP guidelines. Insurance pre-authorization assistance available.</p></div></div>
+        <div class="process-step"><div class="step-num">4</div><div class="step-body"><div class="step-tag">Results</div><h3>Results Disclosure & Interpretation</h3><p>Results are disclosed in a dedicated follow-up appointment — never by letter alone. Our counselors walk through each result in plain language, covering implications for health and next steps.</p></div></div>
+        <div class="process-step"><div class="step-num">5</div><div class="step-body"><div class="step-tag">Management</div><h3>Surveillance & Management Planning</h3><p>Personalized surveillance plan aligned with NCCN and Endocrine Society guidelines, including biochemical panels, imaging (MRI pituitary, abdominal CT/MRI, thyroid ultrasound), and surgical consultation when indicated.</p></div></div>
+        <div class="process-step"><div class="step-num">6</div><div class="step-body"><div class="step-tag">Family</div><h3>Cascade Family Screening</h3><p>We coordinate testing for at-risk first- and second-degree relatives, facilitate single-site testing, and enroll family members into our longitudinal surveillance program.</p></div></div>
+      </div>
+      <div class="panel-box">
+        <h3>Our Hereditary Endocrine Cancer Gene Panel</h3>
+        <p style="color:var(--text-mid); font-size:15px; line-height:1.75;">Our standard multigene panel analyzes 24 genes using NGS. Single-site testing is also available for families with a known pathogenic variant.</p>
+        <div class="gene-chips">
+          <span class="gene-chip">MEN1</span><span class="gene-chip">RET</span><span class="gene-chip">PTEN</span><span class="gene-chip">VHL</span><span class="gene-chip">SDHA</span><span class="gene-chip">SDHB</span><span class="gene-chip">SDHC</span><span class="gene-chip">SDHD</span><span class="gene-chip">SDHAF2</span><span class="gene-chip">CDC73</span><span class="gene-chip">CDKN1B</span><span class="gene-chip">AIP</span><span class="gene-chip">APC</span><span class="gene-chip">NF1</span><span class="gene-chip">TMEM127</span><span class="gene-chip">MAX</span><span class="gene-chip">FH</span><span class="gene-chip">PRKAR1A</span><span class="gene-chip">DICER1</span><span class="gene-chip">TSC1</span><span class="gene-chip">TSC2</span><span class="gene-chip">TP53</span><span class="gene-chip">PHOX2B</span><span class="gene-chip">WRN</span>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+
+<!-- ══════════════════════════════════════════════
+     TEAM
+══════════════════════════════════════════════ -->
+<div id="page-team" class="page">
+  <div class="hero" style="padding:64px 24px 56px;">
+    <div class="hero-media">
+      <!-- Replace the src below with your own image URL (recommend 1600×700px) -->
+      <img src="https://images.unsplash.com/photo-1631217868264-e5b90bb7e133?w=1600&q=80" alt="Physicians in discussion">
+    </div>
+    <!--
+      TEAM HERO IMAGE
+      To replace: edit the <img> src inside .hero-media above
+    -->
+    <div class="hero-inner">
+      <div class="hero-badge">Our Specialists</div>
+      <h1>Meet the<br><em>Clinic Team</em></h1>
+      <p class="hero-sub">Experts in endocrine genetics, genetic counseling, endocrinology, and surgical oncology — working together for your family's health.</p>
+    </div>
+    <div class="hero-photo-credit">Photo: Unsplash · replace via CSS #page-team .hero background-image</div>
+  </div>
+
+  <section>
+    <div class="section-inner">
+      <div class="section-label">Clinical Faculty & Staff</div>
+      <h2 class="section-title">Who You'll Work With</h2>
+      <p class="section-sub">Our multidisciplinary team brings together expertise from genetics, endocrinology, and surgery to deliver comprehensive, coordinated care.</p>
+      <div class="team-grid">
+
+        <div class="team-card">
+          <div class="team-photo">
+            <img src="https://medstarhealth-delivery.sitecorecontenthub.cloud/api/public/content/ROSEN_Jennifer_600?v=000a4959" alt="Dr. Jennifer Rosen" class="team-photo-img">
+            <div class="team-photo-accent"></div>
+          </div>
+          <div class="team-info">
+            <h3>Dr. Jennifer Rosen, MD</h3>
+            <div class="team-title">Director, Familial Endocrine Genetics Clinic<br>Chief of Endocrine & Oncologic Surgery</div>
+            <p>Dr. Rosen is a nationally recognized specialist in hereditary endocrine tumor syndromes, leading the clinic's multidisciplinary care model.</p>
+            <div class="team-focus"><span class="focus-tag">MEN1 / MEN2</span><span class="focus-tag">Thyroid Surgery</span><span class="focus-tag">Familial Screening</span></div>
+          </div>
+        </div>
+
+        <div class="team-card">
+          <div class="team-photo" style="background: linear-gradient(135deg, #1b7a7a 0%, #243358 100%);">
+            <span class="team-photo-initials">AM</span><div class="team-photo-accent"></div>
+          </div>
+          <div class="team-info">
+            <h3>Dr. Amara Mensah, MD, PhD</h3>
+            <div class="team-title">Endocrinologist, Hereditary Tumor Program</div>
+            <p>Dr. Mensah manages longitudinal care for patients with MEN1, VHL, and hereditary pheochromocytoma, specializing in biochemical surveillance.</p>
+            <div class="team-focus"><span class="focus-tag">VHL Syndrome</span><span class="focus-tag">Pheochromocytoma</span><span class="focus-tag">Biochemical Surveillance</span></div>
+          </div>
+        </div>
+
+        <div class="team-card">
+          <div class="team-photo" style="background: linear-gradient(135deg, #243358 0%, #c9a84c 100%);">
+            <span class="team-photo-initials">SC</span><div class="team-photo-accent"></div>
+          </div>
+          <div class="team-info">
+            <h3>Sarah Chen, MS, CGC</h3>
+            <div class="team-title">Lead Certified Genetic Counselor</div>
+            <p>Sarah Chen leads patient consultations and coordinates cascade screening for at-risk relatives, with specialized expertise in cancer genetics.</p>
+            <div class="team-focus"><span class="focus-tag">PTEN / Cowden</span><span class="focus-tag">Family Counseling</span><span class="focus-tag">Cascade Screening</span></div>
+          </div>
+        </div>
+
+        <div class="team-card">
+          <div class="team-photo" style="background: linear-gradient(135deg, #1a3a1a 0%, #1b7a7a 100%);">
+            <span class="team-photo-initials">DP</span><div class="team-photo-accent"></div>
+          </div>
+          <div class="team-info">
+            <h3>Dr. David Park, MD</h3>
+            <div class="team-title">Surgical Oncologist — Endocrine Surgery</div>
+            <p>Dr. Park performs high-volume thyroidectomy, parathyroidectomy, and adrenalectomy, working closely with genetics to plan surgical interventions.</p>
+            <div class="team-focus"><span class="focus-tag">Thyroidectomy</span><span class="focus-tag">Parathyroid Surgery</span><span class="focus-tag">Adrenalectomy</span></div>
+          </div>
+        </div>
+
+        <div class="team-card">
+          <div class="team-photo" style="background: linear-gradient(135deg, #3d1a44 0%, #1b7a7a 100%);">
+            <span class="team-photo-initials">LO</span><div class="team-photo-accent"></div>
+          </div>
+          <div class="team-info">
+            <h3>Liora Osei, MS, CGC</h3>
+            <div class="team-title">Genetic Counselor — Thyroid & Neuroendocrine</div>
+            <p>Liora Osei focuses on counseling for familial thyroid cancer, MEN2, and neuroendocrine syndromes, with expertise in insurance navigation.</p>
+            <div class="team-focus"><span class="focus-tag">MEN2 / RET</span><span class="focus-tag">FNMTC</span><span class="focus-tag">Insurance Navigation</span></div>
+          </div>
+        </div>
+
+        <div class="team-card">
+          <div class="team-photo" style="background: linear-gradient(135deg, #1a2744 0%, #7a3a1b 100%);">
+            <span class="team-photo-initials">RN</span><div class="team-photo-accent"></div>
+          </div>
+          <div class="team-info">
+            <h3>Rachel Nguyen, RN, MSN</h3>
+            <div class="team-title">Clinic Nurse Navigator</div>
+            <p>Rachel coordinates appointments, manages surveillance schedules, and ensures patients have clear follow-up plans and resources.</p>
+            <div class="team-focus"><span class="focus-tag">Care Coordination</span><span class="focus-tag">Patient Navigation</span><span class="focus-tag">Surveillance Scheduling</span></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+</div>
+
+
+<!-- ══════════════════════════════════════════════
+     RESEARCH
+══════════════════════════════════════════════ -->
+<div id="page-research" class="page">
+  <div class="hero" style="padding:64px 24px 56px;">
+    <div class="hero-media">
+      <!-- Replace the src below with your own image URL (recommend 1600×700px) -->
+      <img src="https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=1600&q=80" alt="Scientist pipetting in lab">
+    </div>
+    <!--
+      RESEARCH HERO IMAGE
+      To replace: edit the <img> src inside .hero-media above
+    -->
+    <div class="hero-inner">
+      <div class="hero-badge">Research & Discovery</div>
+      <h1>Our Research in<br><em>Hereditary Endocrine Oncology</em></h1>
+      <p class="hero-sub">Advancing the science of hereditary endocrine tumor genetics — from genotype-phenotype discovery to multi-institutional clinical trials and a growing longitudinal patient registry.</p>
+      <div class="hero-actions">
+        <button class="btn-primary" onclick="showPage('contact')">Inquire About Participation</button>
+        <button class="btn-outline" onclick="document.getElementById('publications-anchor').scrollIntoView({behavior:'smooth'})">View Publications</button>
+      </div>
+    </div>
+    <div class="hero-photo-credit">Photo: Unsplash · replace via CSS #page-research .hero background-image</div>
+  </div>
+
+  <section>
+    <div class="section-inner">
+      <div class="section-label">Research Programs</div>
+      <h2 class="section-title">Our Areas of Scientific Focus</h2>
+      <p class="section-sub">Our translational research program bridges laboratory discovery and patient care, with ongoing studies across six principal domains.</p>
+      <div class="research-focus-grid">
+        <div class="research-focus-card"><div class="research-focus-icon">🧬</div><h3>Genotype–Phenotype Correlation in MEN1</h3><p>Characterizing the relationship between specific MEN1 variant types and tumor penetrance, onset age, and aggressiveness across 200+ families in our registry to inform variant-specific surveillance intervals.</p></div>
+        <div class="research-focus-card"><div class="research-focus-icon">🔬</div><h3>VUS Reclassification & Functional Assays</h3><p>Cell-based assays characterizing pathogenicity of VUS in <em>MEN1</em>, <em>CDC73</em>, and <em>CDKN1B</em>, in collaboration with Georgetown's functional genomics laboratory.</p></div>
+        <div class="research-focus-card"><div class="research-focus-icon">📊</div><h3>Outcomes After Prophylactic Thyroidectomy in RET Carriers</h3><p>Retrospective study examining surgical timing and long-term recurrence in pediatric and adult <em>RET</em> variant carriers, with focus on ATA risk category concordance.</p></div>
+        <div class="research-focus-card"><div class="research-focus-icon">👨‍👩‍👧</div><h3>Psychosocial Impact of Cascade Genetic Testing</h3><p>Studying psychological burden, family communication patterns, and decisional regret among first-degree relatives who undergo cascade testing — in collaboration with Georgetown's Department of Psychiatry.</p></div>
+        <div class="research-focus-card"><div class="research-focus-icon">🏥</div><h3>Disparities in Hereditary Endocrine Cancer Diagnosis</h3><p>Retrospective analysis examining racial, ethnic, and socioeconomic disparities in referral rates and access to multigene panel testing across the MedStar Health system.</p></div>
+        <div class="research-focus-card"><div class="research-focus-icon">⚗️</div><h3>Novel Biomarkers in Hereditary Pheochromocytoma</h3><p>Evaluating plasma and urine metabolomics in SDH-mutation carriers to identify early biomarkers of tumor development prior to imaging detection, with the NIH Intramural Program.</p></div>
+      </div>
+
+      <div class="section-label" style="margin-top:16px;">Clinical Trials</div>
+      <h2 class="section-title">Active & Enrolling Studies</h2>
+      <p class="section-sub">Our patients have the opportunity to participate in investigator-initiated and multi-site trials advancing care for hereditary endocrine syndromes.</p>
+      <div class="trials-list">
+        <div class="trial-card">
+          <div class="trial-status"><div class="status-dot enrolling"></div><div class="status-label enrolling">Enrolling</div></div>
+          <div class="trial-body">
+            <h3>Georgetown MEN1 Longitudinal Family Registry (GMLR)</h3>
+            <div class="trial-meta"><div class="trial-meta-item">📍 <strong>MedStar Georgetown</strong></div><div class="trial-meta-item">👤 <strong>PI:</strong> Dr. Jennifer Rosen</div><div class="trial-meta-item">🗓 <strong>Opened:</strong> 2019 · Ongoing</div></div>
+            <p>Prospective longitudinal registry enrolling individuals and families with confirmed or suspected MEN1 syndrome. Annual biospecimens, imaging data, and patient-reported outcomes. Open to all ages including presymptomatic carriers.</p>
+            <div class="trial-tags"><span class="trial-tag">MEN1</span><span class="trial-tag">Registry</span><span class="trial-tag">Longitudinal</span><span class="trial-tag">All Ages</span></div>
+          </div>
+          <div class="trial-action"><a href="#">Learn More</a><div class="trial-nct">NCT04112381</div></div>
+        </div>
+        <div class="trial-card">
+          <div class="trial-status"><div class="status-dot enrolling"></div><div class="status-label enrolling">Enrolling</div></div>
+          <div class="trial-body">
+            <h3>Multi-Site Study of SDH-Deficient Tumor Metabolomics (SDH-MET)</h3>
+            <div class="trial-meta"><div class="trial-meta-item">📍 <strong>Georgetown + NIH Collaboration</strong></div><div class="trial-meta-item">👤 <strong>Co-PI:</strong> Dr. Amara Mensah</div><div class="trial-meta-item">🗓 <strong>Opened:</strong> 2022 · Ongoing</div></div>
+            <p>Enrolling germline SDH-mutation carriers for serial plasma and urine metabolomic profiling to identify biochemical signatures predictive of tumor development up to 24 months before radiographic detection.</p>
+            <div class="trial-tags"><span class="trial-tag">SDHB / SDHD</span><span class="trial-tag">Pheochromocytoma</span><span class="trial-tag">Paraganglioma</span><span class="trial-tag">Biomarker</span></div>
+          </div>
+          <div class="trial-action"><a href="#">Learn More</a><div class="trial-nct">NCT05204108</div></div>
+        </div>
+        <div class="trial-card">
+          <div class="trial-status"><div class="status-dot active"></div><div class="status-label active">Active</div></div>
+          <div class="trial-body">
+            <h3>Prophylactic Thyroidectomy Outcomes in Pediatric RET Carriers (PROTEK)</h3>
+            <div class="trial-meta"><div class="trial-meta-item">📍 <strong>Multi-Site (4 institutions)</strong></div><div class="trial-meta-item">👤 <strong>PI:</strong> Dr. David Park</div><div class="trial-meta-item">🗓 <strong>Opened:</strong> 2021 · Not enrolling (closed)</div></div>
+            <p>Retrospective multi-institutional cohort examining surgical outcomes and long-term recurrence in pediatric RET carriers who underwent prophylactic or therapeutic thyroidectomy. Data collection ongoing through 2026.</p>
+            <div class="trial-tags"><span class="trial-tag">MEN2</span><span class="trial-tag">RET</span><span class="trial-tag">Pediatric</span><span class="trial-tag">Retrospective</span></div>
+          </div>
+          <div class="trial-action"><a href="#">Study Details</a><div class="trial-nct">NCT04887961</div></div>
+        </div>
+        <div class="trial-card">
+          <div class="trial-status"><div class="status-dot enrolling"></div><div class="status-label enrolling">Enrolling</div></div>
+          <div class="trial-body">
+            <h3>Psychosocial Outcomes of Cascade Genetic Testing (CASCADE-PSYCH)</h3>
+            <div class="trial-meta"><div class="trial-meta-item">📍 <strong>MedStar Georgetown</strong></div><div class="trial-meta-item">👤 <strong>PI:</strong> Sarah Chen, CGC</div><div class="trial-meta-item">🗓 <strong>Opened:</strong> 2023 · Ongoing</div></div>
+            <p>Prospective observational study measuring anxiety, depression, and decisional regret among first-degree relatives testing positive for a hereditary endocrine tumor variant. Assessments at enrollment, 6 months, and 12 months.</p>
+            <div class="trial-tags"><span class="trial-tag">Psychosocial</span><span class="trial-tag">Cascade Testing</span><span class="trial-tag">Survey Study</span><span class="trial-tag">All Syndromes</span></div>
+          </div>
+          <div class="trial-action"><a href="#">Learn More</a><div class="trial-nct">NCT05711394</div></div>
+        </div>
+      </div>
+
+      <div class="external-link-box">
+        <div>
+          <h3>Visit the Rosen Lab Website</h3>
+          <p>Explore our lab’s research projects, publications, and collaboration opportunities on the Rosen Lab portal.</p>
+        </div>
+        <a class="btn-outline" href="https://mgg91-arch.github.io/JERosenLab/#team" target="_blank" rel="noopener">Go to Rosen Lab</a>
+      </div>
+
+      <div id="publications-anchor"></div>
+      <div class="section-label" style="margin-top:16px;">Selected Publications</div>
+      <h2 class="section-title">Recent & Notable Publications</h2>
+      <p class="section-sub">Peer-reviewed research from our team, contributing to the evidence base for hereditary endocrine tumor genetics and management.</p>
+      <div class="publications-list">
+        <div class="publication-item"><div class="pub-meta"><span class="pub-year">2025</span><span class="pub-journal">Journal of Clinical Endocrinology & Metabolism</span><span class="pub-type">Original Research</span></div><h4>Variant-Specific Penetrance of Pancreatic Neuroendocrine Tumors in a Multi-Generational MEN1 Cohort</h4><p>Retrospective analysis of 214 MEN1 carriers stratifying pNET penetrance by variant class. Frameshift and nonsense variants associated with earlier onset and higher rates of surgical intervention.</p><div class="pub-authors"><strong>Rosen JL</strong>, Mensah AK, Chen S, Park DH, Osei LM, et al.</div><a class="pub-link" href="#">View on PubMed</a></div>
+        <div class="publication-item"><div class="pub-meta"><span class="pub-year">2024</span><span class="pub-journal">Thyroid</span><span class="pub-type">Original Research</span></div><h4>Long-Term Surgical Outcomes Following Risk-Stratified Prophylactic Thyroidectomy in RET-Positive Pediatric Patients: A Four-Institution Analysis</h4><p>Outcomes from 87 pediatric RET carriers across four centers. Excellent recurrence-free survival at 5 years. ATA risk category concordance achieved in 94% of cases.</p><div class="pub-authors">Park DH, <strong>Rosen JL</strong>, Osei LM, Nguyen R, et al.</div><a class="pub-link" href="#">View on PubMed</a></div>
+        <div class="publication-item"><div class="pub-meta"><span class="pub-year">2024</span><span class="pub-journal">Genetics in Medicine</span><span class="pub-type">Methods / Functional Study</span></div><h4>Functional Characterization of 22 CDC73 Variants of Uncertain Significance Using a Cell-Based Parafibromin Stability Assay</h4><p>Of 22 CDC73 VUS, 9 reclassified as Likely Pathogenic and 6 as Likely Benign, substantially reducing diagnostic uncertainty for affected families.</p><div class="pub-authors">Chen S, <strong>Rosen JL</strong>, Mensah AK, et al.</div><a class="pub-link" href="#">View on PubMed</a></div>
+        <div class="publication-item"><div class="pub-meta"><span class="pub-year">2023</span><span class="pub-journal">JAMA Oncology</span><span class="pub-type">Disparities Research</span></div><h4>Racial and Socioeconomic Disparities in Referral to Hereditary Cancer Genetics Services Among Patients with Endocrine Tumors in a Regional Health System</h4><p>Analysis of 1,840 patients. Black and Hispanic patients and those with Medicaid were significantly less likely to receive a genetics referral even when criteria were met.</p><div class="pub-authors">Mensah AK, Osei LM, <strong>Rosen JL</strong>, Chen S, et al.</div><a class="pub-link" href="#">View on PubMed</a></div>
+        <div class="publication-item"><div class="pub-meta"><span class="pub-year">2023</span><span class="pub-journal">Endocrine-Related Cancer</span><span class="pub-type">Review</span></div><h4>Cascade Genetic Testing for Hereditary Endocrine Tumor Syndromes: Current Practice, Barriers, and a Proposed Framework for Family Engagement</h4><p>Comprehensive review proposing a proband-supported outreach model for maximizing at-risk relative identification in hereditary endocrine cancer programs.</p><div class="pub-authors"><strong>Rosen JL</strong>, Chen S, Osei LM, Nguyen R.</div><a class="pub-link" href="#">View on PubMed</a></div>
+        <div class="publication-item"><div class="pub-meta"><span class="pub-year">2022</span><span class="pub-journal">Journal of Clinical Oncology</span><span class="pub-type">Original Research</span></div><h4>Early Metabolomic Signatures of SDH-Deficient Tumor Development in Germline SDHB and SDHD Carriers: Interim Analysis of the SDH-MET Study</h4><p>Candidate early biomarkers identified in 64 SDH-variant carriers who subsequently developed pheochromocytoma within 24 months, supporting feasibility of a biochemistry-first surveillance approach.</p><div class="pub-authors">Mensah AK, <strong>Rosen JL</strong>, et al. (SDH-MET Consortium)</div><a class="pub-link" href="#">View on PubMed</a></div>
+      </div>
+
+      <div class="registry-banner">
+        <div class="registry-banner-inner">
+          <div>
+            <h3>Join Our Longitudinal Patient Registry</h3>
+            <p>The Georgetown Familial Endocrine Genetics Registry enrolls patients and family members for long-term follow-up. Participation is voluntary and does not affect clinical care.</p>
+            <div class="registry-stats">
+              <div><div class="registry-stat-num">340+</div><div class="registry-stat-label">Enrolled Participants</div></div>
+              <div><div class="registry-stat-num">6</div><div class="registry-stat-label">Years of Follow-up</div></div>
+              <div><div class="registry-stat-num">12</div><div class="registry-stat-label">Publications Supported</div></div>
+              <div><div class="registry-stat-num">All</div><div class="registry-stat-label">Syndromes Welcome</div></div>
+            </div>
+          </div>
+          <div style="display:flex; flex-direction:column; gap:12px;">
+            <button class="btn-primary" onclick="showPage('contact')">Express Interest</button>
+            <a href="#" style="color:rgba(255,255,255,0.7); font-size:13px; text-align:center; text-decoration:underline;">Registry FAQs →</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="collab-row">
+        <h4>Research Collaborators & Funding Partners</h4>
+        <div class="collab-list">
+          <span class="collab-pill">NIH National Cancer Institute</span>
+          <span class="collab-pill">NIH Intramural Research Program</span>
+          <span class="collab-pill">MedStar Health Research Institute</span>
+          <span class="collab-pill">Georgetown Lombardi Comprehensive Cancer Center</span>
+          <span class="collab-pill">Johns Hopkins Sidney Kimmel Cancer Center</span>
+          <span class="collab-pill">Mayo Clinic Division of Endocrinology</span>
+          <span class="collab-pill">MEN1 Alliance Research Fund</span>
+          <span class="collab-pill">VHL Alliance Scientific Advisory Board</span>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+
+<!-- ══════════════════════════════════════════════
+     RESOURCES
+══════════════════════════════════════════════ -->
+<div id="page-resources" class="page">
+  <div class="hero" style="padding:64px 24px 56px;">
+    <div class="hero-media">
+      <!-- Replace the src below with your own image URL (recommend 1600×700px) -->
+      <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=1600&q=80" alt="Family support">
+    </div>
+    <!--
+      RESOURCES HERO IMAGE
+      To replace: edit the <img> src inside .hero-media above
+    -->
+    <div class="hero-inner">
+      <div class="hero-badge">Patient Support</div>
+      <h1>Resources for<br><em>Patients & Families</em></h1>
+      <p class="hero-sub">Educational materials, support organizations, and tools to help you understand your diagnosis and navigate hereditary endocrine tumor risk.</p>
+    </div>
+    <div class="hero-photo-credit">Photo: Unsplash · replace via CSS #page-resources .hero background-image</div>
+  </div>
+
+  <section>
+    <div class="section-inner">
+      <div class="section-label">Educational & Support Resources</div>
+      <h2 class="section-title">What We Offer Our Patients</h2>
+      <p class="section-sub">Navigating a hereditary cancer diagnosis takes more than medical care — it takes information, community, and support at every step.</p>
+      <div class="resources-grid">
+        <div class="resource-card"><div class="resource-icon">📋</div><h3>Condition Fact Sheets</h3><p>Downloadable, clinically reviewed fact sheets on MEN1, MEN2, Cowden Syndrome, VHL, and hereditary pheochromocytoma — written in plain language for patients and families.</p><a class="resource-link" href="#">Download Fact Sheets</a></div>
+        <div class="resource-card"><div class="resource-icon">🧬</div><h3>Understanding Your Genetic Test Results</h3><p>A guide to interpreting what Pathogenic, Likely Pathogenic, VUS, and Benign results mean for your health and your family's risk.</p><a class="resource-link" href="#">Read the Guide</a></div>
+        <div class="resource-card"><div class="resource-icon">🏥</div><h3>Surveillance Tracking Log</h3><p>A printable personal tracking tool to log your annual labs, imaging results, medication lists, and upcoming surveillance appointments.</p><a class="resource-link" href="#">Download Log Template</a></div>
+        <div class="resource-card"><div class="resource-icon">👨‍👩‍👧</div><h3>Talking to Your Family About Genetic Risk</h3><p>A practical guide for patients on sharing hereditary cancer risk with first-degree relatives — including letter templates you can adapt and share.</p><a class="resource-link" href="#">Read the Guide</a></div>
+        <div class="resource-card"><div class="resource-icon">🔬</div><h3>MEN1 Alliance</h3><p>Patient advocacy and research support connecting individuals and families affected by MEN1. Offers a patient registry, research updates, and peer support.</p><a class="resource-link" href="#">Visit MEN1 Alliance</a></div>
+        <div class="resource-card"><div class="resource-icon">🎗️</div><h3>VHL Alliance</h3><p>Detailed clinical screening guidelines, a global patient registry, and robust educational materials for patients with Von Hippel-Lindau syndrome.</p><a class="resource-link" href="#">Visit VHL Alliance</a></div>
+        <div class="resource-card"><div class="resource-icon">🤝</div><h3>MedStar Social Work & Psychosocial Support</h3><p>Our clinic partners with MedStar Georgetown's Social Work and Behavioral Health teams for emotional support, financial counseling, and community connection.</p><a class="resource-link" href="#">Request a Referral</a></div>
+        <div class="resource-card"><div class="resource-icon">📑</div><h3>Insurance & Genetic Testing Coverage</h3><p>How genetic testing is typically covered by insurance, what pre-authorization looks like, and how our team can assist if coverage is denied.</p><a class="resource-link" href="#">Learn About Coverage</a></div>
+        <div class="resource-card"><div class="resource-icon">🌐</div><h3>NCCN Guidelines — Hereditary Endocrine Tumors</h3><p>The National Comprehensive Cancer Network's evidence-based clinical guidelines, which inform our surveillance recommendations.</p><a class="resource-link" href="#">View NCCN Guidelines</a></div>
+      </div>
+      <div class="referral-box" style="margin-top:56px;">
+        <div>
+          <h3>Questions About Your Results or Diagnosis?</h3>
+          <p>Our genetic counselors are available for follow-up questions after your appointment. We typically respond within one business day.</p>
+        </div>
+        <button class="btn-primary" onclick="showPage('contact')">Contact Our Team</button>
+      </div>
+    </div>
+  </section>
+</div>
+
+
+<!-- ══════════════════════════════════════════════
+     CONTACT
+══════════════════════════════════════════════ -->
+<div id="page-contact" class="page">
+  <div class="hero" style="padding:64px 24px 56px;">
+    <!--
+      CONTACT HERO IMAGE
+      Current: Unsplash stock — Washington DC / hospital exterior / campus
+      To replace: change the background-image URL in CSS for "#page-contact .hero"
+    -->
+    <div class="hero-inner">
+      <div class="hero-badge">Contact & Appointments</div>
+      <h1>Schedule a<br><em>Consultation</em></h1>
+      <p class="hero-sub">To request a genetics consultation or refer a patient, contact us by phone, email, or the form below. We typically respond within one business day.</p>
+    </div>
+    <div class="hero-photo-credit">Photo: Unsplash · replace via CSS #page-contact .hero background-image</div>
+  </div>
+
+  <section>
+    <div class="section-inner">
+      <div class="contact-layout">
+        <div>
+          <div class="contact-block"><h4>Clinic Location</h4><p>Rosen Familial Endocrine Genetics Clinic</p><p>MedStar Georgetown University Hospital</p><p>Pasquerilla Healthcare Center, Suite 4100</p><p>3800 Reservoir Road NW</p><p>Washington, DC 20007</p></div>
+          <div class="contact-block"><h4>Phone & Fax</h4><a href="tel:2024448525">Main: (202) 444-8525</a><a href="#">Fax: (202) 444-8530</a><a href="#">After-Hours Urgent Line: (202) 444-2000</a></div>
+          <div class="contact-block"><h4>Email & Referrals</h4><a href="#">genetics.referral@medstar.net</a><a href="#">General Inquiries: endocrine.genetics@medstar.net</a></div>
+          <div class="contact-block"><h4>Clinic Hours</h4><p>Monday – Friday: 8:00 AM – 5:00 PM</p><p>Telehealth appointments available</p><p>Evening slots available select Thursdays</p></div>
+          <div class="contact-block"><h4>For Clinicians: Referring a Patient</h4><p>Fax a referral form with clinical history and pathology reports to (202) 444-8530, or call (202) 444-8525. We contact the patient within 5 business days.</p></div>
+          <div class="contact-block"><h4>Patient Portal</h4><a href="#">Access MedStar eHealth Portal →</a></div>
+        </div>
+        <div>
+          <div class="contact-form">
+            <h3>Request an Appointment</h3>
+            <div class="form-row">
+              <div class="form-group"><label>First Name</label><input type="text" placeholder="Jane"></div>
+              <div class="form-group"><label>Last Name</label><input type="text" placeholder="Smith"></div>
+            </div>
+            <div class="form-group"><label>Email Address</label><input type="email" placeholder="jane.smith@email.com"></div>
+            <div class="form-group"><label>Phone Number</label><input type="tel" placeholder="(202) 555-0100"></div>
+            <div class="form-group"><label>Date of Birth</label><input type="date"></div>
+            <div class="form-group"><label>Reason for Appointment</label>
+              <select>
+                <option value="">— Please select —</option>
+                <option>Known pathogenic variant in family</option>
+                <option>Personal history of endocrine tumor</option>
+                <option>Family history of hereditary endocrine syndrome</option>
+                <option>Medullary thyroid cancer / RET mutation</option>
+                <option>Pheochromocytoma or paraganglioma</option>
+                <option>Parathyroid disease</option>
+                <option>Other / General inquiry</option>
+              </select>
+            </div>
+            <div class="form-group"><label>Referring Physician (if applicable)</label><input type="text" placeholder="Dr. Name, Institution"></div>
+            <div class="form-group"><label>Additional Information</label><textarea placeholder="Please describe your personal or family history, or any relevant genetic test results..."></textarea></div>
+            <button class="btn-primary" style="width:100%;">Submit Request</button>
+            <p class="form-note">This form is for appointment requests only and is not monitored 24/7. For urgent medical concerns, please call (202) 444-8525 during business hours or go to your nearest emergency room.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+
+<!-- INFO BAND -->
+<div class="info-band">
+  <strong>Crisis or Emergency?</strong> This clinic does not provide emergency services. Please call <strong>911</strong> or go to <a href="#">MedStar Georgetown Emergency Department</a> for urgent care.
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <h3>Rosen Familial Endocrine Genetics Clinic</h3>
+      <p>A specialized program at MedStar Georgetown University Hospital dedicated to hereditary endocrine tumor genetics, comprehensive family screening, and coordinated multidisciplinary care.</p>
+      <br>
+      <span class="medstar-badge">⬡ MedStar Georgetown University Hospital</span>
+    </div>
+    <div>
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a onclick="showPage('home')">Home & About</a></li>
+        <li><a onclick="showPage('conditions')">Conditions & Syndromes</a></li>
+        <li><a onclick="showPage('screening')">Genetic Screening Process</a></li>
+        <li><a onclick="showPage('team')">Meet the Team</a></li>
+        <li><a onclick="showPage('research')">Our Research</a></li>
+        <li><a onclick="showPage('resources')">Patient Resources</a></li>
+        <li><a onclick="showPage('contact')">Contact & Appointments</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Contact</h4>
+      <ul>
+        <li><a>3800 Reservoir Road NW</a></li>
+        <li><a>Washington, DC 20007</a></li>
+        <li><a href="tel:2024448525">(202) 444-8525</a></li>
+        <li><a href="#">genetics.referral@medstar.net</a></li>
+        <li><a href="#">MedStar eHealth Portal</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 MedStar Georgetown University Hospital. All rights reserved.</span>
+    <span>Privacy Policy · Terms of Use · Non-Discrimination Notice</span>
+  </div>
+</footer>
+
+<script>
+  function showPage(page) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+    const el = document.getElementById('page-' + page);
+    const nav = document.getElementById('nav-' + page);
+    if (el) el.classList.add('active');
+    if (nav) nav.classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    return false;
+  }
+  document.querySelectorAll('.nav-links a').forEach(a => {
+    a.addEventListener('click', e => e.preventDefault());
+  });
+</script>
+</body>
+</html>
