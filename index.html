@@ -90,6 +90,157 @@
   .nav-appt { background: var(--teal) !important; color: white !important; border-radius: var(--radius) !important; padding: 9px 18px !important; }
   .nav-appt:hover { background: var(--navy) !important; color: white !important; }
 
+  /* ── Hamburger Button ── */
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 44px;
+    height: 44px;
+    padding: 8px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    border-radius: var(--radius);
+    transition: var(--transition);
+    flex-shrink: 0;
+  }
+  .hamburger:hover { background: var(--teal-pale); }
+  .hamburger span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--navy);
+    border-radius: 2px;
+    transition: var(--transition);
+    transform-origin: center;
+  }
+  .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+  .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  /* ── Mobile Drawer ── */
+  .mobile-nav {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    z-index: 99;
+    pointer-events: none;
+  }
+  .mobile-nav.open { pointer-events: all; }
+
+  .mobile-nav-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(15,26,48,0.55);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    backdrop-filter: blur(2px);
+  }
+  .mobile-nav.open .mobile-nav-overlay { opacity: 1; }
+
+  .mobile-nav-drawer {
+    position: absolute;
+    top: 0; right: 0;
+    width: min(300px, 85vw);
+    height: 100%;
+    background: var(--warm-white);
+    box-shadow: var(--shadow-lg);
+    transform: translateX(100%);
+    transition: transform 0.32s cubic-bezier(0.4,0,0.2,1);
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+  }
+  .mobile-nav.open .mobile-nav-drawer { transform: translateX(0); }
+
+  .mobile-nav-header {
+    padding: 20px 20px 16px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--navy-deep);
+  }
+  .mobile-nav-header .clinic-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: white;
+    line-height: 1.3;
+    max-width: 200px;
+  }
+  .mobile-nav-close {
+    width: 36px; height: 36px;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 50%;
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition);
+    flex-shrink: 0;
+  }
+  .mobile-nav-close:hover { background: rgba(255,255,255,0.2); }
+
+  .mobile-nav-links {
+    list-style: none;
+    padding: 12px 0;
+    flex: 1;
+  }
+  .mobile-nav-links li a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 20px;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-mid);
+    text-decoration: none;
+    transition: var(--transition);
+    border-left: 3px solid transparent;
+    letter-spacing: 0.01em;
+  }
+  .mobile-nav-links li a:hover,
+  .mobile-nav-links li a.active {
+    color: var(--teal);
+    background: var(--teal-pale);
+    border-left-color: var(--teal);
+  }
+  .mobile-nav-links li a .nav-icon { font-size: 18px; width: 24px; text-align: center; }
+
+  .mobile-nav-footer {
+    padding: 20px;
+    border-top: 1px solid var(--border);
+    background: var(--cream);
+  }
+  .mobile-nav-footer a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: var(--teal);
+    color: white;
+    font-size: 14px;
+    font-weight: 700;
+    padding: 14px 20px;
+    border-radius: var(--radius);
+    text-decoration: none;
+    transition: var(--transition);
+    letter-spacing: 0.03em;
+  }
+  .mobile-nav-footer a:hover { background: var(--navy); }
+  .mobile-nav-footer p {
+    text-align: center;
+    margin-top: 10px;
+    font-size: 12px;
+    color: var(--text-soft);
+  }
+
   .page { display: none; }
   .page.active { display: block; }
 
@@ -150,12 +301,10 @@
     z-index: 2;
   }
 
-  /* ── Per-page background images ── */
   #page-home .hero {
     background-image: url('https://cdn.create.vista.com/api/media/small/57357703/stock-photo-cancer-cell');
     background-size: cover;
     background-position: center 30%;
-    /* SMALLER HOME HERO: reduced padding to shrink the image height */
     padding: 40px 24px 36px;
   }
 
@@ -544,21 +693,38 @@
   .footer-bottom { max-width: 1140px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: rgba(255,255,255,0.4); flex-wrap: wrap; gap: 8px; }
   .medstar-badge { display: inline-flex; align-items: center; gap: 6px; color: var(--gold-light); font-size: 12px; font-weight: 600; }
 
+  /* ── Responsive ── */
   @media (max-width: 900px) {
     .about-grid, .contact-layout { grid-template-columns: 1fr; gap: 36px; }
     .referral-box { grid-template-columns: 1fr; }
     .footer-inner { grid-template-columns: 1fr 1fr; }
     .form-row { grid-template-columns: 1fr; }
-    .nav-links { display: none; }
     .trial-card { grid-template-columns: 1fr; }
     .trial-status { flex-direction: row; align-items: center; }
     .trial-action { flex-direction: row; align-items: center; min-width: unset; }
     .registry-banner-inner { grid-template-columns: 1fr; }
+
+    /* Show hamburger, hide desktop nav */
+    .hamburger { display: flex; }
+    .nav-links { display: none; }
+    .mobile-nav { display: block; }
+
+    /* Tighten nav brand on small screens */
+    .nav-brand .clinic-name { font-size: 14px; }
+    .nav-brand .institution { font-size: 10px; }
   }
+
   @media (max-width: 600px) {
     .footer-inner { grid-template-columns: 1fr; gap: 28px; }
     .hero-stats { gap: 24px; }
     .registry-stats { gap: 20px; flex-wrap: wrap; }
+    section { padding: 48px 16px; }
+    .referral-box { padding: 28px 20px; }
+    .contact-form { padding: 24px 16px; }
+    .panel-box { padding: 24px 20px; }
+    .collab-row { padding: 24px 16px; }
+    .external-link-box { padding: 24px 20px; grid-template-columns: 1fr; }
+    .registry-banner { padding: 32px 24px; }
   }
 </style>
 </head>
@@ -566,8 +732,8 @@
 
 <div class="top-bar">
   MedStar Georgetown University Hospital &nbsp;|&nbsp;
-  <a href="#" onclick="showPage('contact')">Schedule Appointment: 202-444-8525</a>
-  &nbsp;|&nbsp; Referrals: <a href="#">genetics.referral@medstar.net</a>
+  <a href="#" onclick="showPage('contact')">Schedule: 202-444-8525</a>
+  &nbsp;|&nbsp; <a href="#">genetics.referral@medstar.net</a>
 </div>
 
 <nav>
@@ -576,6 +742,7 @@
       <span class="clinic-name">Rosen Familial Endocrine Genetics Clinic</span>
       <span class="institution">MedStar Georgetown University Hospital</span>
     </div>
+    <!-- Desktop nav -->
     <ul class="nav-links">
       <li><a href="#" onclick="showPage('home')" id="nav-home" class="active">Home</a></li>
       <li><a href="#" onclick="showPage('conditions')" id="nav-conditions">Conditions & Syndromes</a></li>
@@ -585,8 +752,37 @@
       <li><a href="#" onclick="showPage('resources')" id="nav-resources">Patient Resources</a></li>
       <li><a href="#" onclick="showPage('contact')" id="nav-contact" class="nav-appt">Appointments</a></li>
     </ul>
+    <!-- Hamburger button (mobile only) -->
+    <button class="hamburger" id="hamburger-btn" aria-label="Open navigation menu" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
   </div>
 </nav>
+
+<!-- Mobile slide-out drawer -->
+<div class="mobile-nav" id="mobile-nav" role="dialog" aria-modal="true" aria-label="Navigation menu">
+  <div class="mobile-nav-overlay" id="mobile-nav-overlay"></div>
+  <div class="mobile-nav-drawer">
+    <div class="mobile-nav-header">
+      <span class="clinic-name">Rosen Familial Endocrine<br>Genetics Clinic</span>
+      <button class="mobile-nav-close" id="mobile-nav-close" aria-label="Close navigation">✕</button>
+    </div>
+    <ul class="mobile-nav-links">
+      <li><a href="#" onclick="mobileNav('home')" id="mnav-home" class="active"><span class="nav-icon">🏠</span> Home</a></li>
+      <li><a href="#" onclick="mobileNav('conditions')" id="mnav-conditions"><span class="nav-icon">🧬</span> Conditions & Syndromes</a></li>
+      <li><a href="#" onclick="mobileNav('screening')" id="mnav-screening"><span class="nav-icon">🔬</span> Genetic Screening</a></li>
+      <li><a href="#" onclick="mobileNav('team')" id="mnav-team"><span class="nav-icon">👨‍⚕️</span> Meet the Team</a></li>
+      <li><a href="#" onclick="mobileNav('research')" id="mnav-research"><span class="nav-icon">📊</span> Our Research</a></li>
+      <li><a href="#" onclick="mobileNav('resources')" id="mnav-resources"><span class="nav-icon">📋</span> Patient Resources</a></li>
+    </ul>
+    <div class="mobile-nav-footer">
+      <a href="#" onclick="mobileNav('contact')">📅 Request an Appointment</a>
+      <p>(202) 444-8525 · Mon–Fri 8am–5pm</p>
+    </div>
+  </div>
+</div>
 
 <!-- HOME -->
 <div id="page-home" class="page active">
@@ -1043,6 +1239,71 @@
 </footer>
 
 <script>
+  // ── Page switching ──
+  function showPage(page) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.nav-links a, .mobile-nav-links a').forEach(a => a.classList.remove('active'));
+    const el = document.getElementById('page-' + page);
+    const desktopNav = document.getElementById('nav-' + page);
+    const mobileNav = document.getElementById('mnav-' + page);
+    if (el) el.classList.add('active');
+    if (desktopNav) desktopNav.classList.add('active');
+    if (mobileNav) mobileNav.classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    return false;
+  }
+
+  // Navigate from mobile drawer and close it
+  function mobileNav(page) {
+    showPage(page);
+    closeMobileNav();
+    return false;
+  }
+
+  // ── Mobile drawer logic ──
+  const hamburgerBtn = document.getElementById('hamburger-btn');
+  const mobileNavEl  = document.getElementById('mobile-nav');
+  const mobileNavClose = document.getElementById('mobile-nav-close');
+  const mobileNavOverlay = document.getElementById('mobile-nav-overlay');
+
+  function openMobileNav() {
+    mobileNavEl.classList.add('open');
+    hamburgerBtn.classList.add('open');
+    hamburgerBtn.setAttribute('aria-expanded', 'true');
+    document.body.style.overflow = 'hidden'; // prevent background scroll
+  }
+
+  function closeMobileNav() {
+    mobileNavEl.classList.remove('open');
+    hamburgerBtn.classList.remove('open');
+    hamburgerBtn.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+  }
+
+  hamburgerBtn.addEventListener('click', () => {
+    if (mobileNavEl.classList.contains('open')) {
+      closeMobileNav();
+    } else {
+      openMobileNav();
+    }
+  });
+
+  mobileNavClose.addEventListener('click', closeMobileNav);
+  mobileNavOverlay.addEventListener('click', closeMobileNav);
+
+  // Close on Escape key
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && mobileNavEl.classList.contains('open')) {
+      closeMobileNav();
+    }
+  });
+
+  // Prevent desktop nav links from following href
+  document.querySelectorAll('.nav-links a').forEach(a => {
+    a.addEventListener('click', e => e.preventDefault());
+  });
+
+  // ── Appointment form ──
   function submitAppointmentForm(event) {
     event.preventDefault();
     const form = event.target;
@@ -1058,20 +1319,6 @@
     window.location.href = `mailto:genetics.referral@medstar.net?subject=${subject}&body=${body}`;
     return false;
   }
-
-  function showPage(page) {
-    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-    document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
-    const el = document.getElementById('page-' + page);
-    const nav = document.getElementById('nav-' + page);
-    if (el) el.classList.add('active');
-    if (nav) nav.classList.add('active');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-    return false;
-  }
-  document.querySelectorAll('.nav-links a').forEach(a => {
-    a.addEventListener('click', e => e.preventDefault());
-  });
 </script>
 </body>
 </html>
