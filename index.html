@@ -38,7 +38,6 @@
     line-height: 1.7;
   }
 
-  /* ─── TOP BAR ─────────────────────────────────── */
   .top-bar {
     background: var(--navy-deep);
     color: rgba(255,255,255,0.65);
@@ -52,7 +51,6 @@
   }
   .top-bar a { color: var(--gold-light); text-decoration: none; }
 
-  /* ─── NAV ─────────────────────────────────────── */
   nav {
     background: var(--warm-white);
     border-bottom: 2px solid var(--teal);
@@ -92,32 +90,16 @@
   .nav-appt { background: var(--teal) !important; color: white !important; border-radius: var(--radius) !important; padding: 9px 18px !important; }
   .nav-appt:hover { background: var(--navy) !important; color: white !important; }
 
-  /* ─── PAGES ──────────────────────────────────── */
   .page { display: none; }
   .page.active { display: block; }
 
-  /* ══════════════════════════════════════════════
-     PHOTO HERO SYSTEM
-     Each page gets a .hero with a unique background-image.
-     The overlay is a layered gradient so text always reads.
-     To swap an image, find the matching CSS rule below and
-     replace the url(...) value with your own photo URL.
-  ══════════════════════════════════════════════ */
   .hero {
     position: relative;
     overflow: hidden;
     color: white;
     padding: 90px 24px 80px;
-
-    /* Dark fallback gradient — shows if image hasn't loaded */
     background-color: var(--navy-deep);
-
-    /* Instead of using CSS background-image, we render a dedicated <img> inside */
     background-image: none !important;
-
-    /* The overlay is always on top of the photo:
-       first layer = dark gradient for text legibility
-       second layer = the photo itself */
     background-blend-mode: multiply;
   }
 
@@ -139,7 +121,6 @@
     transform: scale(1.02);
   }
 
-  /* Shared overlay gradient (sits on top of every photo) */
   .hero::before {
     content: '';
     position: absolute; inset: 0;
@@ -152,7 +133,6 @@
     z-index: 1;
   }
 
-  /* Decorative radial glows — same as original */
   .hero::after {
     content: '';
     position: absolute;
@@ -167,71 +147,54 @@
     max-width: 1140px;
     margin: 0 auto;
     position: relative;
-    z-index: 2; /* above overlays */
+    z-index: 2;
   }
 
-  /* ── Per-page background images ─────────────────
-     Replace the url(...) on each rule with your own photo.
-     Recommended: 1600×700px, compressed JPEG.
-  ─────────────────────────────────────────────── */
-
-  /* HOME — doctor consulting with patient / warm clinical setting */
-  /* REPLACE IMAGE: swap URL below for your own home hero photo */
+  /* ── Per-page background images ── */
   #page-home .hero {
     background-image: url('https://cdn.create.vista.com/api/media/small/57357703/stock-photo-cancer-cell');
     background-size: cover;
     background-position: center 30%;
+    /* SMALLER HOME HERO: reduced padding to shrink the image height */
+    padding: 40px 24px 36px;
   }
 
-  /* CONDITIONS — close-up of DNA helix / molecular biology */
-  /* REPLACE IMAGE: swap URL below for your conditions hero photo */
   #page-conditions .hero {
     background-image: url('https://images.unsplash.com/photo-1559757175-0eb30cd8c063?w=1600&q=80');
     background-size: cover;
     background-position: center center;
   }
 
-  /* SCREENING — medical lab technician / genetic testing */
-  /* REPLACE IMAGE: swap URL below for your screening hero photo */
   #page-screening .hero {
     background-image: url('https://images.unsplash.com/photo-1582719508461-905c673771fd?w=1600&q=80');
     background-size: cover;
     background-position: center 40%;
   }
 
-  /* TEAM — physicians in discussion / white coats */
-  /* REPLACE IMAGE: swap URL below for your team hero photo */
   #page-team .hero {
     background-image: url('https://images.unsplash.com/photo-1631217868264-e5b90bb7e133?w=1600&q=80');
     background-size: cover;
     background-position: center 25%;
   }
 
-  /* RESEARCH — scientist pipetting in lab */
-  /* REPLACE IMAGE: swap URL below for your research hero photo */
   #page-research .hero {
     background-image: url('https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=1600&q=80');
     background-size: cover;
     background-position: center 45%;
   }
 
-  /* RESOURCES — patients / family support / hands together */
-  /* REPLACE IMAGE: swap URL below for your resources hero photo */
   #page-resources .hero {
     background-image: url('https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=1600&q=80');
     background-size: cover;
     background-position: center 60%;
   }
 
-  /* CONTACT — Georgetown campus / hospital exterior */
-  /* REPLACE IMAGE: swap URL below for your contact hero photo */
   #page-contact .hero {
     background-image: url('https://images.unsplash.com/photo-1504439468489-c8920d796a29?w=1600&q=80');
     background-size: cover;
     background-position: center 50%;
   }
 
-  /* ── Hero text styles ──────────────────────────── */
   .hero-badge {
     display: inline-flex;
     align-items: center;
@@ -299,14 +262,12 @@
     letter-spacing: 0.05em; text-transform: uppercase; margin-top: 4px;
   }
 
-  /* Photo credit strip — optional, appears bottom-right of hero */
   .hero-photo-credit {
     position: absolute; bottom: 12px; right: 20px;
     font-size: 10px; color: rgba(255,255,255,0.35);
     z-index: 2; letter-spacing: 0.03em;
   }
 
-  /* ─── SECTION COMMONS ─────────────────────────── */
   section { padding: 72px 24px; }
   .section-inner { max-width: 1140px; margin: 0 auto; }
   .section-label {
@@ -324,7 +285,6 @@
     font-family: 'Source Serif 4', serif; font-style: italic; font-weight: 300;
   }
 
-  /* ─── ABOUT / HIGHLIGHT CARDS ─────────────────── */
   .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; }
   .about-text p { color: var(--text-mid); margin-bottom: 18px; line-height: 1.8; }
   .about-highlights { display: flex; flex-direction: column; gap: 16px; }
@@ -337,7 +297,6 @@
   .highlight-card h4 { font-family: 'Playfair Display', serif; font-size: 16px; color: var(--navy); margin-bottom: 6px; }
   .highlight-card p { font-size: 14px; color: var(--text-mid); line-height: 1.6; }
 
-  /* ─── REFERRAL BOX ────────────────────────────── */
   .referral-box {
     background: linear-gradient(135deg, var(--navy) 0%, #1e3060 100%);
     color: white; border-radius: 8px; padding: 44px 48px; margin-top: 60px;
@@ -358,7 +317,6 @@
   .external-link-box p { font-size: 15px; color: var(--text-mid); max-width: 520px; }
   .external-link-box a { text-decoration: none; }
 
-  /* ─── CONDITIONS ─────────────────────────────── */
   .conditions-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 24px; }
   .condition-card {
     background: var(--warm-white); border: 1px solid var(--border);
@@ -384,7 +342,6 @@
     padding: 3px 10px; border-radius: 12px; border: 1px solid var(--border);
   }
 
-  /* ─── SCREENING ──────────────────────────────── */
   .process-track { position: relative; max-width: 800px; margin: 0 auto; }
   .process-track::before {
     content: ''; position: absolute; left: 31px; top: 0; bottom: 0;
@@ -425,7 +382,6 @@
     letter-spacing: 0.06em; padding: 5px 12px; border-radius: 4px;
   }
 
-  /* ─── TEAM ───────────────────────────────────── */
   .team-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 24px; }
   .team-card {
     background: var(--warm-white); border: 1px solid var(--border);
@@ -455,7 +411,6 @@
   .team-focus { margin-top: 14px; display: flex; flex-wrap: wrap; gap: 5px; }
   .focus-tag { background: var(--teal-pale); color: var(--teal); font-size: 11px; font-weight: 600; padding: 3px 9px; border-radius: 12px; }
 
-  /* ─── RESEARCH PAGE ──────────────────────────── */
   .research-focus-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 24px; margin-bottom: 64px; }
   .research-focus-card {
     background: var(--warm-white); border: 1px solid var(--border);
@@ -546,7 +501,6 @@
   .collab-list { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
   .collab-pill { background: var(--cream); border: 1px solid var(--border); border-radius: 20px; padding: 8px 18px; font-size: 13px; font-weight: 600; color: var(--text-mid); white-space: nowrap; }
 
-  /* ─── RESOURCES ──────────────────────────────── */
   .resources-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 24px; }
   .resource-card { background: var(--warm-white); border: 1px solid var(--border); border-radius: 6px; padding: 28px; transition: var(--transition); box-shadow: var(--shadow-sm); cursor: pointer; }
   .resource-card:hover { box-shadow: var(--shadow-md); border-color: var(--teal); }
@@ -556,7 +510,6 @@
   .resource-link { display: inline-flex; align-items: center; gap: 6px; margin-top: 16px; color: var(--teal); font-size: 13px; font-weight: 600; text-decoration: none; letter-spacing: 0.03em; }
   .resource-link::after { content: '→'; }
 
-  /* ─── CONTACT ────────────────────────────────── */
   .contact-layout { display: grid; grid-template-columns: 1.1fr 1fr; gap: 56px; align-items: start; }
   .contact-block { margin-bottom: 32px; }
   .contact-block h4 { font-family: 'Playfair Display', serif; font-size: 17px; color: var(--navy); margin-bottom: 10px; padding-bottom: 8px; border-bottom: 1px solid var(--border); }
@@ -576,7 +529,6 @@
   .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
   .form-note { font-size: 12px; color: var(--text-soft); margin-top: 14px; line-height: 1.6; }
 
-  /* ─── INFO BAND & FOOTER ─────────────────────── */
   .info-band { background: var(--navy-deep); color: white; padding: 14px 24px; text-align: center; font-size: 14px; }
   .info-band strong { color: var(--gold-light); }
   .info-band a { color: var(--teal-light); text-decoration: none; margin: 0 8px; }
@@ -592,7 +544,6 @@
   .footer-bottom { max-width: 1140px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: rgba(255,255,255,0.4); flex-wrap: wrap; gap: 8px; }
   .medstar-badge { display: inline-flex; align-items: center; gap: 6px; color: var(--gold-light); font-size: 12px; font-weight: 600; }
 
-  /* ─── RESPONSIVE ─────────────────────────────── */
   @media (max-width: 900px) {
     .about-grid, .contact-layout { grid-template-columns: 1fr; gap: 36px; }
     .referral-box { grid-template-columns: 1fr; }
@@ -613,14 +564,12 @@
 </head>
 <body>
 
-<!-- TOP BAR -->
 <div class="top-bar">
   MedStar Georgetown University Hospital &nbsp;|&nbsp;
   <a href="#" onclick="showPage('contact')">Schedule Appointment: 202-444-8525</a>
   &nbsp;|&nbsp; Referrals: <a href="#">genetics.referral@medstar.net</a>
 </div>
 
-<!-- NAV -->
 <nav>
   <div class="nav-inner">
     <div class="nav-brand" onclick="showPage('home')">
@@ -635,25 +584,16 @@
       <li><a href="#" onclick="showPage('research')" id="nav-research">Our Research</a></li>
       <li><a href="#" onclick="showPage('resources')" id="nav-resources">Patient Resources</a></li>
       <li><a href="#" onclick="showPage('contact')" id="nav-contact" class="nav-appt">Appointments</a></li>
-      
     </ul>
   </div>
 </nav>
 
-
-<!-- ══════════════════════════════════════════════
-     HOME
-══════════════════════════════════════════════ -->
+<!-- HOME -->
 <div id="page-home" class="page active">
   <div class="hero">
     <div class="hero-media">
-      <!-- Replace the src below with your own photo URL (recommend 1600×700px) -->
       <img src="https://t4.ftcdn.net/jpg/02/93/58/47/360_F_293584799_wgcZ9SRCpHC5fXTAL2eytD32i9hW7wBu.jpg" alt="Doctor consulting patient">
     </div>
-    <!--
-      HOME HERO IMAGE
-      To replace: edit the <img> src inside .hero-media above
-    -->
     <div class="hero-inner">
       <div class="hero-badge">Specialized Genetic Oncology Program</div>
       <h1>Hereditary Endocrine<br><em>Tumor Genetics</em> at Georgetown</h1>
@@ -669,7 +609,7 @@
         <div class="stat-item"><div class="stat-num">NGS</div><div class="stat-label">Next-Gen Sequencing</div></div>
       </div>
     </div>
-    <div class="hero-photo-credit">Photo: Unsplash · replace via CSS #page-home .hero background-image</div>
+    <div class="hero-photo-credit">Photo: replace src in .hero-media img</div>
   </div>
 
   <section>
@@ -702,28 +642,19 @@
   </section>
 </div>
 
-
-<!-- ══════════════════════════════════════════════
-     CONDITIONS
-══════════════════════════════════════════════ -->
+<!-- CONDITIONS -->
 <div id="page-conditions" class="page">
   <div class="hero" style="padding:64px 24px 56px;">
     <div class="hero-media">
-      <!-- Replace the src below with your own image URL (recommend 1600×700px) -->
       <img src="https://images.unsplash.com/photo-1559757175-0eb30cd8c063?w=1600&q=80" alt="DNA helix close-up">
     </div>
-    <!--
-      CONDITIONS HERO IMAGE
-      To replace: edit the <img> src inside .hero-media above
-    -->
     <div class="hero-inner">
       <div class="hero-badge">Clinical Focus Areas</div>
       <h1>Hereditary Endocrine<br><em>Syndromes & Conditions</em></h1>
       <p class="hero-sub">We specialize in the genetic evaluation and long-term surveillance of the most clinically significant inherited endocrine tumor syndromes.</p>
     </div>
-    <div class="hero-photo-credit">Photo: Unsplash · replace via CSS #page-conditions .hero background-image</div>
+    <div class="hero-photo-credit">Photo: Unsplash</div>
   </div>
-
   <section>
     <div class="section-inner">
       <div class="section-label">Syndromes We Evaluate</div>
@@ -743,28 +674,19 @@
   </section>
 </div>
 
-
-<!-- ══════════════════════════════════════════════
-     SCREENING
-══════════════════════════════════════════════ -->
+<!-- SCREENING -->
 <div id="page-screening" class="page">
   <div class="hero" style="padding:64px 24px 56px;">
     <div class="hero-media">
-      <!-- Replace the src below with your own image URL (recommend 1600×700px) -->
       <img src="https://images.unsplash.com/photo-1582719508461-905c673771fd?w=1600&q=80" alt="Laboratory testing">
     </div>
-    <!--
-      SCREENING HERO IMAGE
-      To replace: edit the <img> src inside .hero-media above
-    -->
     <div class="hero-inner">
       <div class="hero-badge">Our Clinical Process</div>
       <h1>Genetic Screening:<br><em>From Referral to Results</em></h1>
       <p class="hero-sub">A step-by-step, patient-centered approach to identifying hereditary endocrine tumor risk — with clarity at every stage.</p>
     </div>
-    <div class="hero-photo-credit">Photo: Unsplash · replace via CSS #page-screening .hero background-image</div>
+    <div class="hero-photo-credit">Photo: Unsplash</div>
   </div>
-
   <section>
     <div class="section-inner">
       <div class="section-label">Step-by-Step Process</div>
@@ -789,35 +711,25 @@
   </section>
 </div>
 
-
-<!-- ══════════════════════════════════════════════
-     TEAM
-══════════════════════════════════════════════ -->
+<!-- TEAM -->
 <div id="page-team" class="page">
   <div class="hero" style="padding:64px 24px 56px;">
     <div class="hero-media">
-      <!-- Replace the src below with your own image URL (recommend 1600×700px) -->
       <img src="https://images.unsplash.com/photo-1631217868264-e5b90bb7e133?w=1600&q=80" alt="Physicians in discussion">
     </div>
-    <!--
-      TEAM HERO IMAGE
-      To replace: edit the <img> src inside .hero-media above
-    -->
     <div class="hero-inner">
       <div class="hero-badge">Our Specialists</div>
       <h1>Meet the<br><em>Clinic Team</em></h1>
       <p class="hero-sub">Experts in endocrine genetics, genetic counseling, endocrinology, and surgical oncology — working together for your family's health.</p>
     </div>
-    <div class="hero-photo-credit">Photo: Unsplash · replace via CSS #page-team .hero background-image</div>
+    <div class="hero-photo-credit">Photo: Unsplash</div>
   </div>
-
   <section>
     <div class="section-inner">
       <div class="section-label">Clinical Faculty & Staff</div>
       <h2 class="section-title">Who You'll Work With</h2>
       <p class="section-sub">Our multidisciplinary team brings together expertise from genetics, endocrinology, and surgery to deliver comprehensive, coordinated care.</p>
       <div class="team-grid">
-
         <div class="team-card">
           <div class="team-photo">
             <img src="https://medstarhealth-delivery.sitecorecontenthub.cloud/api/public/content/ROSEN_Jennifer_600?v=000a4959" alt="Dr. Jennifer Rosen" class="team-photo-img">
@@ -830,7 +742,6 @@
             <div class="team-focus"><span class="focus-tag">MEN1 / MEN2</span><span class="focus-tag">Thyroid Surgery</span><span class="focus-tag">Familial Screening</span></div>
           </div>
         </div>
-
         <div class="team-card">
           <div class="team-photo" style="background: linear-gradient(135deg, #1b7a7a 0%, #243358 100%);">
             <span class="team-photo-initials">AM</span><div class="team-photo-accent"></div>
@@ -842,7 +753,6 @@
             <div class="team-focus"><span class="focus-tag">VHL Syndrome</span><span class="focus-tag">Pheochromocytoma</span><span class="focus-tag">Biochemical Surveillance</span></div>
           </div>
         </div>
-
         <div class="team-card">
           <div class="team-photo" style="background: linear-gradient(135deg, #243358 0%, #c9a84c 100%);">
             <span class="team-photo-initials">SC</span><div class="team-photo-accent"></div>
@@ -854,7 +764,6 @@
             <div class="team-focus"><span class="focus-tag">PTEN / Cowden</span><span class="focus-tag">Family Counseling</span><span class="focus-tag">Cascade Screening</span></div>
           </div>
         </div>
-
         <div class="team-card">
           <div class="team-photo" style="background: linear-gradient(135deg, #1a3a1a 0%, #1b7a7a 100%);">
             <span class="team-photo-initials">DP</span><div class="team-photo-accent"></div>
@@ -866,7 +775,6 @@
             <div class="team-focus"><span class="focus-tag">Thyroidectomy</span><span class="focus-tag">Parathyroid Surgery</span><span class="focus-tag">Adrenalectomy</span></div>
           </div>
         </div>
-
         <div class="team-card">
           <div class="team-photo" style="background: linear-gradient(135deg, #3d1a44 0%, #1b7a7a 100%);">
             <span class="team-photo-initials">LO</span><div class="team-photo-accent"></div>
@@ -878,7 +786,6 @@
             <div class="team-focus"><span class="focus-tag">MEN2 / RET</span><span class="focus-tag">FNMTC</span><span class="focus-tag">Insurance Navigation</span></div>
           </div>
         </div>
-
         <div class="team-card">
           <div class="team-photo" style="background: linear-gradient(135deg, #1a2744 0%, #7a3a1b 100%);">
             <span class="team-photo-initials">RN</span><div class="team-photo-accent"></div>
@@ -890,26 +797,17 @@
             <div class="team-focus"><span class="focus-tag">Care Coordination</span><span class="focus-tag">Patient Navigation</span><span class="focus-tag">Surveillance Scheduling</span></div>
           </div>
         </div>
-
       </div>
     </div>
   </section>
 </div>
 
-
-<!-- ══════════════════════════════════════════════
-     RESEARCH
-══════════════════════════════════════════════ -->
+<!-- RESEARCH -->
 <div id="page-research" class="page">
   <div class="hero" style="padding:64px 24px 56px;">
     <div class="hero-media">
-      <!-- Replace the src below with your own image URL (recommend 1600×700px) -->
       <img src="https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=1600&q=80" alt="Scientist pipetting in lab">
     </div>
-    <!--
-      RESEARCH HERO IMAGE
-      To replace: edit the <img> src inside .hero-media above
-    -->
     <div class="hero-inner">
       <div class="hero-badge">Research & Discovery</div>
       <h1>Our Research in<br><em>Hereditary Endocrine Oncology</em></h1>
@@ -919,9 +817,8 @@
         <button class="btn-outline" onclick="document.getElementById('publications-anchor').scrollIntoView({behavior:'smooth'})">View Publications</button>
       </div>
     </div>
-    <div class="hero-photo-credit">Photo: Unsplash · replace via CSS #page-research .hero background-image</div>
+    <div class="hero-photo-credit">Photo: Unsplash</div>
   </div>
-
   <section>
     <div class="section-inner">
       <div class="section-label">Research Programs</div>
@@ -935,61 +832,35 @@
         <div class="research-focus-card"><div class="research-focus-icon">🏥</div><h3>Disparities in Hereditary Endocrine Cancer Diagnosis</h3><p>Retrospective analysis examining racial, ethnic, and socioeconomic disparities in referral rates and access to multigene panel testing across the MedStar Health system.</p></div>
         <div class="research-focus-card"><div class="research-focus-icon">⚗️</div><h3>Novel Biomarkers in Hereditary Pheochromocytoma</h3><p>Evaluating plasma and urine metabolomics in SDH-mutation carriers to identify early biomarkers of tumor development prior to imaging detection, with the NIH Intramural Program.</p></div>
       </div>
-
       <div class="section-label" style="margin-top:16px;">Clinical Trials</div>
       <h2 class="section-title">Active & Enrolling Studies</h2>
       <p class="section-sub">Our patients have the opportunity to participate in investigator-initiated and multi-site trials advancing care for hereditary endocrine syndromes.</p>
       <div class="trials-list">
         <div class="trial-card">
           <div class="trial-status"><div class="status-dot enrolling"></div><div class="status-label enrolling">Enrolling</div></div>
-          <div class="trial-body">
-            <h3>Georgetown MEN1 Longitudinal Family Registry (GMLR)</h3>
-            <div class="trial-meta"><div class="trial-meta-item">📍 <strong>MedStar Georgetown</strong></div><div class="trial-meta-item">👤 <strong>PI:</strong> Dr. Jennifer Rosen</div><div class="trial-meta-item">🗓 <strong>Opened:</strong> 2019 · Ongoing</div></div>
-            <p>Prospective longitudinal registry enrolling individuals and families with confirmed or suspected MEN1 syndrome. Annual biospecimens, imaging data, and patient-reported outcomes. Open to all ages including presymptomatic carriers.</p>
-            <div class="trial-tags"><span class="trial-tag">MEN1</span><span class="trial-tag">Registry</span><span class="trial-tag">Longitudinal</span><span class="trial-tag">All Ages</span></div>
-          </div>
+          <div class="trial-body"><h3>Georgetown MEN1 Longitudinal Family Registry (GMLR)</h3><div class="trial-meta"><div class="trial-meta-item">📍 <strong>MedStar Georgetown</strong></div><div class="trial-meta-item">👤 <strong>PI:</strong> Dr. Jennifer Rosen</div><div class="trial-meta-item">🗓 <strong>Opened:</strong> 2019 · Ongoing</div></div><p>Prospective longitudinal registry enrolling individuals and families with confirmed or suspected MEN1 syndrome. Annual biospecimens, imaging data, and patient-reported outcomes. Open to all ages including presymptomatic carriers.</p><div class="trial-tags"><span class="trial-tag">MEN1</span><span class="trial-tag">Registry</span><span class="trial-tag">Longitudinal</span><span class="trial-tag">All Ages</span></div></div>
           <div class="trial-action"><a href="#">Learn More</a><div class="trial-nct">NCT04112381</div></div>
         </div>
         <div class="trial-card">
           <div class="trial-status"><div class="status-dot enrolling"></div><div class="status-label enrolling">Enrolling</div></div>
-          <div class="trial-body">
-            <h3>Multi-Site Study of SDH-Deficient Tumor Metabolomics (SDH-MET)</h3>
-            <div class="trial-meta"><div class="trial-meta-item">📍 <strong>Georgetown + NIH Collaboration</strong></div><div class="trial-meta-item">👤 <strong>Co-PI:</strong> Dr. Amara Mensah</div><div class="trial-meta-item">🗓 <strong>Opened:</strong> 2022 · Ongoing</div></div>
-            <p>Enrolling germline SDH-mutation carriers for serial plasma and urine metabolomic profiling to identify biochemical signatures predictive of tumor development up to 24 months before radiographic detection.</p>
-            <div class="trial-tags"><span class="trial-tag">SDHB / SDHD</span><span class="trial-tag">Pheochromocytoma</span><span class="trial-tag">Paraganglioma</span><span class="trial-tag">Biomarker</span></div>
-          </div>
+          <div class="trial-body"><h3>Multi-Site Study of SDH-Deficient Tumor Metabolomics (SDH-MET)</h3><div class="trial-meta"><div class="trial-meta-item">📍 <strong>Georgetown + NIH Collaboration</strong></div><div class="trial-meta-item">👤 <strong>Co-PI:</strong> Dr. Amara Mensah</div><div class="trial-meta-item">🗓 <strong>Opened:</strong> 2022 · Ongoing</div></div><p>Enrolling germline SDH-mutation carriers for serial plasma and urine metabolomic profiling to identify biochemical signatures predictive of tumor development up to 24 months before radiographic detection.</p><div class="trial-tags"><span class="trial-tag">SDHB / SDHD</span><span class="trial-tag">Pheochromocytoma</span><span class="trial-tag">Paraganglioma</span><span class="trial-tag">Biomarker</span></div></div>
           <div class="trial-action"><a href="#">Learn More</a><div class="trial-nct">NCT05204108</div></div>
         </div>
         <div class="trial-card">
           <div class="trial-status"><div class="status-dot active"></div><div class="status-label active">Active</div></div>
-          <div class="trial-body">
-            <h3>Prophylactic Thyroidectomy Outcomes in Pediatric RET Carriers (PROTEK)</h3>
-            <div class="trial-meta"><div class="trial-meta-item">📍 <strong>Multi-Site (4 institutions)</strong></div><div class="trial-meta-item">👤 <strong>PI:</strong> Dr. David Park</div><div class="trial-meta-item">🗓 <strong>Opened:</strong> 2021 · Not enrolling (closed)</div></div>
-            <p>Retrospective multi-institutional cohort examining surgical outcomes and long-term recurrence in pediatric RET carriers who underwent prophylactic or therapeutic thyroidectomy. Data collection ongoing through 2026.</p>
-            <div class="trial-tags"><span class="trial-tag">MEN2</span><span class="trial-tag">RET</span><span class="trial-tag">Pediatric</span><span class="trial-tag">Retrospective</span></div>
-          </div>
+          <div class="trial-body"><h3>Prophylactic Thyroidectomy Outcomes in Pediatric RET Carriers (PROTEK)</h3><div class="trial-meta"><div class="trial-meta-item">📍 <strong>Multi-Site (4 institutions)</strong></div><div class="trial-meta-item">👤 <strong>PI:</strong> Dr. David Park</div><div class="trial-meta-item">🗓 <strong>Opened:</strong> 2021 · Not enrolling (closed)</div></div><p>Retrospective multi-institutional cohort examining surgical outcomes and long-term recurrence in pediatric RET carriers who underwent prophylactic or therapeutic thyroidectomy. Data collection ongoing through 2026.</p><div class="trial-tags"><span class="trial-tag">MEN2</span><span class="trial-tag">RET</span><span class="trial-tag">Pediatric</span><span class="trial-tag">Retrospective</span></div></div>
           <div class="trial-action"><a href="#">Study Details</a><div class="trial-nct">NCT04887961</div></div>
         </div>
         <div class="trial-card">
           <div class="trial-status"><div class="status-dot enrolling"></div><div class="status-label enrolling">Enrolling</div></div>
-          <div class="trial-body">
-            <h3>Psychosocial Outcomes of Cascade Genetic Testing (CASCADE-PSYCH)</h3>
-            <div class="trial-meta"><div class="trial-meta-item">📍 <strong>MedStar Georgetown</strong></div><div class="trial-meta-item">👤 <strong>PI:</strong> Sarah Chen, CGC</div><div class="trial-meta-item">🗓 <strong>Opened:</strong> 2023 · Ongoing</div></div>
-            <p>Prospective observational study measuring anxiety, depression, and decisional regret among first-degree relatives testing positive for a hereditary endocrine tumor variant. Assessments at enrollment, 6 months, and 12 months.</p>
-            <div class="trial-tags"><span class="trial-tag">Psychosocial</span><span class="trial-tag">Cascade Testing</span><span class="trial-tag">Survey Study</span><span class="trial-tag">All Syndromes</span></div>
-          </div>
+          <div class="trial-body"><h3>Psychosocial Outcomes of Cascade Genetic Testing (CASCADE-PSYCH)</h3><div class="trial-meta"><div class="trial-meta-item">📍 <strong>MedStar Georgetown</strong></div><div class="trial-meta-item">👤 <strong>PI:</strong> Sarah Chen, CGC</div><div class="trial-meta-item">🗓 <strong>Opened:</strong> 2023 · Ongoing</div></div><p>Prospective observational study measuring anxiety, depression, and decisional regret among first-degree relatives testing positive for a hereditary endocrine tumor variant. Assessments at enrollment, 6 months, and 12 months.</p><div class="trial-tags"><span class="trial-tag">Psychosocial</span><span class="trial-tag">Cascade Testing</span><span class="trial-tag">Survey Study</span><span class="trial-tag">All Syndromes</span></div></div>
           <div class="trial-action"><a href="#">Learn More</a><div class="trial-nct">NCT05711394</div></div>
         </div>
       </div>
-
       <div class="external-link-box">
-        <div>
-          <h3>Visit the Rosen Lab Website</h3>
-          <p>Explore our lab’s research projects, publications, and collaboration opportunities on the Rosen Lab portal.</p>
-        </div>
-        <a class="btn-outline" href="https://mgg91-arch.github.io/JERosenLab/#team" target="_blank" rel="noopener">Go to Rosen Lab</a>
+        <div><h3>Visit the Rosen Lab Website</h3><p>Explore our lab's research projects, publications, and collaboration opportunities on the Rosen Lab portal.</p></div>
+        <a class="btn-outline" href="https://mgg91-arch.github.io/JERosenLab/#team" target="_blank" rel="noopener" style="color:var(--navy);border-color:var(--teal);">Go to Rosen Lab</a>
       </div>
-
       <div id="publications-anchor"></div>
       <div class="section-label" style="margin-top:16px;">Selected Publications</div>
       <h2 class="section-title">Recent & Notable Publications</h2>
@@ -1002,7 +873,6 @@
         <div class="publication-item"><div class="pub-meta"><span class="pub-year">2023</span><span class="pub-journal">Endocrine-Related Cancer</span><span class="pub-type">Review</span></div><h4>Cascade Genetic Testing for Hereditary Endocrine Tumor Syndromes: Current Practice, Barriers, and a Proposed Framework for Family Engagement</h4><p>Comprehensive review proposing a proband-supported outreach model for maximizing at-risk relative identification in hereditary endocrine cancer programs.</p><div class="pub-authors"><strong>Rosen JL</strong>, Chen S, Osei LM, Nguyen R.</div><a class="pub-link" href="#">View on PubMed</a></div>
         <div class="publication-item"><div class="pub-meta"><span class="pub-year">2022</span><span class="pub-journal">Journal of Clinical Oncology</span><span class="pub-type">Original Research</span></div><h4>Early Metabolomic Signatures of SDH-Deficient Tumor Development in Germline SDHB and SDHD Carriers: Interim Analysis of the SDH-MET Study</h4><p>Candidate early biomarkers identified in 64 SDH-variant carriers who subsequently developed pheochromocytoma within 24 months, supporting feasibility of a biochemistry-first surveillance approach.</p><div class="pub-authors">Mensah AK, <strong>Rosen JL</strong>, et al. (SDH-MET Consortium)</div><a class="pub-link" href="#">View on PubMed</a></div>
       </div>
-
       <div class="registry-banner">
         <div class="registry-banner-inner">
           <div>
@@ -1021,7 +891,6 @@
           </div>
         </div>
       </div>
-
       <div class="collab-row">
         <h4>Research Collaborators & Funding Partners</h4>
         <div class="collab-list">
@@ -1039,28 +908,19 @@
   </section>
 </div>
 
-
-<!-- ══════════════════════════════════════════════
-     RESOURCES
-══════════════════════════════════════════════ -->
+<!-- RESOURCES -->
 <div id="page-resources" class="page">
   <div class="hero" style="padding:64px 24px 56px;">
     <div class="hero-media">
-      <!-- Replace the src below with your own image URL (recommend 1600×700px) -->
       <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=1600&q=80" alt="Family support">
     </div>
-    <!--
-      RESOURCES HERO IMAGE
-      To replace: edit the <img> src inside .hero-media above
-    -->
     <div class="hero-inner">
       <div class="hero-badge">Patient Support</div>
       <h1>Resources for<br><em>Patients & Families</em></h1>
       <p class="hero-sub">Educational materials, support organizations, and tools to help you understand your diagnosis and navigate hereditary endocrine tumor risk.</p>
     </div>
-    <div class="hero-photo-credit">Photo: Unsplash · replace via CSS #page-resources .hero background-image</div>
+    <div class="hero-photo-credit">Photo: Unsplash</div>
   </div>
-
   <section>
     <div class="section-inner">
       <div class="section-label">Educational & Support Resources</div>
@@ -1078,35 +938,23 @@
         <div class="resource-card"><div class="resource-icon">🌐</div><h3>NCCN Guidelines — Hereditary Endocrine Tumors</h3><p>The National Comprehensive Cancer Network's evidence-based clinical guidelines, which inform our surveillance recommendations.</p><a class="resource-link" href="#">View NCCN Guidelines</a></div>
       </div>
       <div class="referral-box" style="margin-top:56px;">
-        <div>
-          <h3>Questions About Your Results or Diagnosis?</h3>
-          <p>Our genetic counselors are available for follow-up questions after your appointment. We typically respond within one business day.</p>
-        </div>
+        <div><h3>Questions About Your Results or Diagnosis?</h3><p>Our genetic counselors are available for follow-up questions after your appointment. We typically respond within one business day.</p></div>
         <button class="btn-primary" onclick="showPage('contact')">Contact Our Team</button>
       </div>
     </div>
   </section>
 </div>
 
-
-<!-- ══════════════════════════════════════════════
-     CONTACT
-══════════════════════════════════════════════ -->
+<!-- CONTACT -->
 <div id="page-contact" class="page">
   <div class="hero" style="padding:64px 24px 56px;">
-    <!--
-      CONTACT HERO IMAGE
-      Current: Unsplash stock — Washington DC / hospital exterior / campus
-      To replace: change the background-image URL in CSS for "#page-contact .hero"
-    -->
     <div class="hero-inner">
       <div class="hero-badge">Contact & Appointments</div>
       <h1>Schedule a<br><em>Consultation</em></h1>
       <p class="hero-sub">To request a genetics consultation or refer a patient, contact us by phone, email, or the form below. We typically respond within one business day.</p>
     </div>
-    <div class="hero-photo-credit">Photo: Unsplash · replace via CSS #page-contact .hero background-image</div>
+    <div class="hero-photo-credit">Photo: Unsplash</div>
   </div>
-
   <section>
     <div class="section-inner">
       <div class="contact-layout">
@@ -1153,13 +1001,10 @@
   </section>
 </div>
 
-
-<!-- INFO BAND -->
 <div class="info-band">
   <strong>Crisis or Emergency?</strong> This clinic does not provide emergency services. Please call <strong>911</strong> or go to <a href="#">MedStar Georgetown Emergency Department</a> for urgent care.
 </div>
 
-<!-- FOOTER -->
 <footer>
   <div class="footer-inner">
     <div class="footer-brand">
@@ -1202,8 +1047,6 @@
     event.preventDefault();
     const form = event.target;
     const data = new FormData(form);
-
-    // Build mailto body (simple, client-side without backend)
     const lines = [];
     for (const [key, value] of data.entries()) {
       if (!value) continue;
@@ -1212,14 +1055,10 @@
     }
     const body = encodeURIComponent(lines.join('\n'));
     const subject = encodeURIComponent('Appointment Request - Rosen Familial Endocrine Genetics Clinic');
-    const mailto = `mailto:genetics.referral@medstar.net?subject=${subject}&body=${body}`;
-
-    window.location.href = mailto;
+    window.location.href = `mailto:genetics.referral@medstar.net?subject=${subject}&body=${body}`;
     return false;
   }
-</script>
 
-<script>
   function showPage(page) {
     document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
     document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
