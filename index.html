@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Rosen Familial Endocrine Genetics Clinic | MedStar Georgetown</title>
+<title>JE Rosen Lab - Hereditary Endocrine Genetics</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Source+Sans+3:wght@300;400;500;600&family=Source+Serif+4:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -693,6 +693,82 @@
   .footer-bottom { max-width: 1140px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: rgba(255,255,255,0.4); flex-wrap: wrap; gap: 8px; }
   .medstar-badge { display: inline-flex; align-items: center; gap: 6px; color: var(--gold-light); font-size: 12px; font-weight: 600; }
 
+  /* ─── PASSWORD PROTECTION ──────────────────── */
+  .password-modal {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(26,39,68,0.95);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.3s, visibility 0.3s;
+  }
+  .password-modal.active { opacity: 1; visibility: visible; }
+  .password-modal:not(.active) { opacity: 0; visibility: hidden; pointer-events: none; }
+  
+  .password-box {
+    background: white;
+    border-radius: 8px;
+    padding: 48px 40px;
+    max-width: 420px;
+    width: 90%;
+    box-shadow: 0 20px 60px rgba(26,39,68,0.4);
+    text-align: center;
+  }
+  .password-box h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    color: var(--navy);
+    margin-bottom: 12px;
+  }
+  .password-box p:first-of-type {
+    color: var(--text-mid);
+    margin-bottom: 24px;
+    font-size: 15px;
+    line-height: 1.6;
+  }
+  .password-box input {
+    width: 100%;
+    padding: 14px;
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius);
+    font-size: 15px;
+    margin-bottom: 16px;
+    font-family: 'Source Sans 3', sans-serif;
+  }
+  .password-box input:focus {
+    outline: none;
+    border-color: var(--teal);
+    box-shadow: 0 0 0 3px rgba(27,122,122,0.1);
+  }
+  .password-box button {
+    width: 100%;
+    padding: 12px;
+    background: var(--teal);
+    color: white;
+    border: none;
+    border-radius: var(--radius);
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+  }
+  .password-box button:hover { background: var(--teal-light); }
+  
+  .password-error {
+    color: #d32f2f;
+    font-size: 13px;
+    margin-top: 12px;
+    min-height: 16px;
+  }
+
+  .hidden { display: none !important; }
+  #main-content { display: block; }
+  #main-content.hidden { display: none !important; }
+
   /* ── Responsive ── */
   @media (max-width: 900px) {
     .about-grid, .contact-layout { grid-template-columns: 1fr; gap: 36px; }
@@ -730,8 +806,21 @@
 </head>
 <body>
 
+<!-- PASSWORD PROTECTION MODAL -->
+<div id="password-modal" class="password-modal active">
+  <div class="password-box">
+    <h2>Access Required</h2>
+    <p>This website is password protected. Please enter the password to continue.</p>
+    <input type="password" id="password-input" placeholder="Enter password..." />
+    <button onclick="checkPassword()">Submit</button>
+    <p id="password-error" class="password-error"></p>
+  </div>
+</div>
+
+<!-- MAIN CONTENT (hidden until password is entered) -->
+<div id="main-content" class="main-content hidden">
+
 <div class="top-bar">
-  MedStar Georgetown University Hospital &nbsp;|&nbsp;
   <a href="#" onclick="showPage('contact')">Schedule: 202-444-8525</a>
   &nbsp;|&nbsp; <a href="#">genetics.referral@medstar.net</a>
 </div>
@@ -740,7 +829,7 @@
   <div class="nav-inner">
     <div class="nav-brand" onclick="showPage('home')">
       <span class="clinic-name">Rosen Familial Endocrine Genetics Clinic</span>
-      <span class="institution">MedStar Georgetown University Hospital</span>
+      <span class="institution">Hereditary Endocrine Genetics</span>
     </div>
     <!-- Desktop nav -->
     <ul class="nav-links">
@@ -814,7 +903,7 @@
         <div class="about-text">
           <div class="section-label">About Our Program</div>
           <h2 class="section-title">A Clinic Built Around Families, Not Just Patients</h2>
-          <p>The Rosen Familial Endocrine Genetics Clinic at MedStar Georgetown University Hospital is a dedicated program for the identification, evaluation, and long-term management of individuals and families with hereditary endocrine tumor syndromes.</p>
+          <p>The Rosen Familial Endocrine Genetics Clinic is a dedicated independent research and clinical program for the identification, evaluation, and long-term management of individuals and families with hereditary endocrine tumor syndromes.</p>
           <p>Led by Dr. Jennifer Rosen, our clinic integrates advanced next-generation sequencing with compassionate, individualized genetic counseling. We work closely with endocrinology, surgery, and oncology teams to ensure every patient receives seamlessly coordinated care.</p>
           <p>Because hereditary endocrine conditions affect entire families, our program extends its scope to at-risk relatives — offering proactive screening and surveillance before tumors develop. Early identification saves lives.</p>
           <br>
@@ -928,7 +1017,7 @@
       <div class="team-grid">
         <div class="team-card">
           <div class="team-photo">
-            <img src="https://medstarhealth-delivery.sitecorecontenthub.cloud/api/public/content/ROSEN_Jennifer_600?v=000a4959" alt="Dr. Jennifer Rosen" class="team-photo-img">
+            <span class="team-photo-initials">JR</span>
             <div class="team-photo-accent"></div>
           </div>
           <div class="team-info">
@@ -1025,7 +1114,7 @@
         <div class="research-focus-card"><div class="research-focus-icon">🔬</div><h3>VUS Reclassification & Functional Assays</h3><p>Cell-based assays characterizing pathogenicity of VUS in <em>MEN1</em>, <em>CDC73</em>, and <em>CDKN1B</em>, in collaboration with Georgetown's functional genomics laboratory.</p></div>
         <div class="research-focus-card"><div class="research-focus-icon">📊</div><h3>Outcomes After Prophylactic Thyroidectomy in RET Carriers</h3><p>Retrospective study examining surgical timing and long-term recurrence in pediatric and adult <em>RET</em> variant carriers, with focus on ATA risk category concordance.</p></div>
         <div class="research-focus-card"><div class="research-focus-icon">👨‍👩‍👧</div><h3>Psychosocial Impact of Cascade Genetic Testing</h3><p>Studying psychological burden, family communication patterns, and decisional regret among first-degree relatives who undergo cascade testing — in collaboration with Georgetown's Department of Psychiatry.</p></div>
-        <div class="research-focus-card"><div class="research-focus-icon">🏥</div><h3>Disparities in Hereditary Endocrine Cancer Diagnosis</h3><p>Retrospective analysis examining racial, ethnic, and socioeconomic disparities in referral rates and access to multigene panel testing across the MedStar Health system.</p></div>
+        <div class="research-focus-card"><div class="research-focus-icon">🏥</div><h3>Disparities in Hereditary Endocrine Cancer Diagnosis</h3><p>Retrospective analysis examining racial, ethnic, and socioeconomic disparities in referral rates and access to multigene panel testing in clinical practice.</p></div>
         <div class="research-focus-card"><div class="research-focus-icon">⚗️</div><h3>Novel Biomarkers in Hereditary Pheochromocytoma</h3><p>Evaluating plasma and urine metabolomics in SDH-mutation carriers to identify early biomarkers of tumor development prior to imaging detection, with the NIH Intramural Program.</p></div>
       </div>
       <div class="section-label" style="margin-top:16px;">Clinical Trials</div>
@@ -1034,7 +1123,7 @@
       <div class="trials-list">
         <div class="trial-card">
           <div class="trial-status"><div class="status-dot enrolling"></div><div class="status-label enrolling">Enrolling</div></div>
-          <div class="trial-body"><h3>Georgetown MEN1 Longitudinal Family Registry (GMLR)</h3><div class="trial-meta"><div class="trial-meta-item">📍 <strong>MedStar Georgetown</strong></div><div class="trial-meta-item">👤 <strong>PI:</strong> Dr. Jennifer Rosen</div><div class="trial-meta-item">🗓 <strong>Opened:</strong> 2019 · Ongoing</div></div><p>Prospective longitudinal registry enrolling individuals and families with confirmed or suspected MEN1 syndrome. Annual biospecimens, imaging data, and patient-reported outcomes. Open to all ages including presymptomatic carriers.</p><div class="trial-tags"><span class="trial-tag">MEN1</span><span class="trial-tag">Registry</span><span class="trial-tag">Longitudinal</span><span class="trial-tag">All Ages</span></div></div>
+          <div class="trial-body"><h3>Georgetown MEN1 Longitudinal Family Registry (GMLR)</h3><div class="trial-meta"><div class="trial-meta-item">📍 <strong>JE Rosen Lab</strong></div><div class="trial-meta-item">👤 <strong>PI:</strong> Dr. Jennifer Rosen</div><div class="trial-meta-item">🗓 <strong>Opened:</strong> 2019 · Ongoing</div></div><p>Prospective longitudinal registry enrolling individuals and families with confirmed or suspected MEN1 syndrome. Annual biospecimens, imaging data, and patient-reported outcomes. Open to all ages including presymptomatic carriers.</p><div class="trial-tags"><span class="trial-tag">MEN1</span><span class="trial-tag">Registry</span><span class="trial-tag">Longitudinal</span><span class="trial-tag">All Ages</span></div></div>
           <div class="trial-action"><a href="#">Learn More</a><div class="trial-nct">NCT04112381</div></div>
         </div>
         <div class="trial-card">
@@ -1049,7 +1138,7 @@
         </div>
         <div class="trial-card">
           <div class="trial-status"><div class="status-dot enrolling"></div><div class="status-label enrolling">Enrolling</div></div>
-          <div class="trial-body"><h3>Psychosocial Outcomes of Cascade Genetic Testing (CASCADE-PSYCH)</h3><div class="trial-meta"><div class="trial-meta-item">📍 <strong>MedStar Georgetown</strong></div><div class="trial-meta-item">👤 <strong>PI:</strong> Sarah Chen, CGC</div><div class="trial-meta-item">🗓 <strong>Opened:</strong> 2023 · Ongoing</div></div><p>Prospective observational study measuring anxiety, depression, and decisional regret among first-degree relatives testing positive for a hereditary endocrine tumor variant. Assessments at enrollment, 6 months, and 12 months.</p><div class="trial-tags"><span class="trial-tag">Psychosocial</span><span class="trial-tag">Cascade Testing</span><span class="trial-tag">Survey Study</span><span class="trial-tag">All Syndromes</span></div></div>
+          <div class="trial-body"><h3>Psychosocial Outcomes of Cascade Genetic Testing (CASCADE-PSYCH)</h3><div class="trial-meta"><div class="trial-meta-item">📍 <strong>JE Rosen Lab</strong></div><div class="trial-meta-item">👤 <strong>PI:</strong> Sarah Chen, CGC</div><div class="trial-meta-item">🗓 <strong>Opened:</strong> 2023 · Ongoing</div></div><p>Prospective observational study measuring anxiety, depression, and decisional regret among first-degree relatives testing positive for a hereditary endocrine tumor variant. Assessments at enrollment, 6 months, and 12 months.</p><div class="trial-tags"><span class="trial-tag">Psychosocial</span><span class="trial-tag">Cascade Testing</span><span class="trial-tag">Survey Study</span><span class="trial-tag">All Syndromes</span></div></div>
           <div class="trial-action"><a href="#">Learn More</a><div class="trial-nct">NCT05711394</div></div>
         </div>
       </div>
@@ -1092,7 +1181,6 @@
         <div class="collab-list">
           <span class="collab-pill">NIH National Cancer Institute</span>
           <span class="collab-pill">NIH Intramural Research Program</span>
-          <span class="collab-pill">MedStar Health Research Institute</span>
           <span class="collab-pill">Georgetown Lombardi Comprehensive Cancer Center</span>
           <span class="collab-pill">Johns Hopkins Sidney Kimmel Cancer Center</span>
           <span class="collab-pill">Mayo Clinic Division of Endocrinology</span>
@@ -1129,7 +1217,7 @@
         <div class="resource-card"><div class="resource-icon">👨‍👩‍👧</div><h3>Talking to Your Family About Genetic Risk</h3><p>A practical guide for patients on sharing hereditary cancer risk with first-degree relatives — including letter templates you can adapt and share.</p><a class="resource-link" href="#">Read the Guide</a></div>
         <div class="resource-card"><div class="resource-icon">🔬</div><h3>MEN1 Alliance</h3><p>Patient advocacy and research support connecting individuals and families affected by MEN1. Offers a patient registry, research updates, and peer support.</p><a class="resource-link" href="#">Visit MEN1 Alliance</a></div>
         <div class="resource-card"><div class="resource-icon">🎗️</div><h3>VHL Alliance</h3><p>Detailed clinical screening guidelines, a global patient registry, and robust educational materials for patients with Von Hippel-Lindau syndrome.</p><a class="resource-link" href="#">Visit VHL Alliance</a></div>
-        <div class="resource-card"><div class="resource-icon">🤝</div><h3>MedStar Social Work & Psychosocial Support</h3><p>Our clinic partners with MedStar Georgetown's Social Work and Behavioral Health teams for emotional support, financial counseling, and community connection.</p><a class="resource-link" href="#">Request a Referral</a></div>
+        <div class="resource-card"><div class="resource-icon">🤝</div><h3>Psychosocial Support</h3><p>We provide resources and referrals for emotional support, financial counseling, and mental health services for patients and families navigating genetic risk.</p><a class="resource-link" href="#">Request a Referral</a></div>
         <div class="resource-card"><div class="resource-icon">📑</div><h3>Insurance & Genetic Testing Coverage</h3><p>How genetic testing is typically covered by insurance, what pre-authorization looks like, and how our team can assist if coverage is denied.</p><a class="resource-link" href="#">Learn About Coverage</a></div>
         <div class="resource-card"><div class="resource-icon">🌐</div><h3>NCCN Guidelines — Hereditary Endocrine Tumors</h3><p>The National Comprehensive Cancer Network's evidence-based clinical guidelines, which inform our surveillance recommendations.</p><a class="resource-link" href="#">View NCCN Guidelines</a></div>
       </div>
@@ -1155,12 +1243,12 @@
     <div class="section-inner">
       <div class="contact-layout">
         <div>
-          <div class="contact-block"><h4>Clinic Location</h4><p>Rosen Familial Endocrine Genetics Clinic</p><p>MedStar Georgetown University Hospital</p><p>Pasquerilla Healthcare Center, Suite 4100</p><p>3800 Reservoir Road NW</p><p>Washington, DC 20007</p></div>
+          <div class="contact-block"><h4>Clinic Location</h4><p>Rosen Familial Endocrine Genetics Clinic</p><p>Pasquerilla Healthcare Center, Suite 4100</p><p>3800 Reservoir Road NW</p><p>Washington, DC 20007</p></div>
           <div class="contact-block"><h4>Phone & Fax</h4><a href="tel:2024448525">Main: (202) 444-8525</a><a href="#">Fax: (202) 444-8530</a><a href="#">After-Hours Urgent Line: (202) 444-2000</a></div>
           <div class="contact-block"><h4>Email & Referrals</h4><a href="#">genetics.referral@medstar.net</a><a href="#">General Inquiries: endocrine.genetics@medstar.net</a></div>
           <div class="contact-block"><h4>Clinic Hours</h4><p>Monday – Friday: 8:00 AM – 5:00 PM</p><p>Telehealth appointments available</p><p>Evening slots available select Thursdays</p></div>
           <div class="contact-block"><h4>For Clinicians: Referring a Patient</h4><p>Fax a referral form with clinical history and pathology reports to (202) 444-8530, or call (202) 444-8525. We contact the patient within 5 business days.</p></div>
-          <div class="contact-block"><h4>Patient Portal</h4><a href="https://medstarhealth.consumeridp.us-1.healtheintent.com/saml2/sso/login?authenticationRequestId=04a875bb-148d-4c20-8310-6450994083ca">Access MedStar eHealth Portal →</a></div>
+
         </div>
         <div>
           <div class="contact-form">
@@ -1198,16 +1286,16 @@
 </div>
 
 <div class="info-band">
-  <strong>Crisis or Emergency?</strong> This clinic does not provide emergency services. Please call <strong>911</strong> or go to <a href="#">MedStar Georgetown Emergency Department</a> for urgent care.
+  <strong>Crisis or Emergency?</strong> This clinic does not provide emergency services. Please call <strong>911</strong> or visit your nearest emergency department for urgent care.
 </div>
 
 <footer>
   <div class="footer-inner">
     <div class="footer-brand">
-      <h3>Rosen Familial Endocrine Genetics Clinic</h3>
-      <p>A specialized program at MedStar Georgetown University Hospital dedicated to hereditary endocrine tumor genetics, comprehensive family screening, and coordinated multidisciplinary care.</p>
+      <h3>JE Rosen Lab</h3>
+      <p>An independent research and clinical program dedicated to hereditary endocrine tumor genetics, comprehensive family screening, and translational research advancing precision medicine in genetic oncology.</p>
       <br>
-      <span class="medstar-badge">⬡ MedStar Georgetown University Hospital</span>
+      <span class="medstar-badge">⬡ Advancing Genetic Medicine in Endocrine Oncology</span>
     </div>
     <div>
       <h4>Quick Links</h4>
@@ -1228,12 +1316,11 @@
         <li><a>Washington, DC 20007</a></li>
         <li><a href="tel:2024448525">(202) 444-8525</a></li>
         <li><a href="#">genetics.referral@medstar.net</a></li>
-        <li><a href="#">MedStar eHealth Portal</a></li>
       </ul>
     </div>
   </div>
   <div class="footer-bottom">
-    <span>© 2026 MedStar Georgetown University Hospital. All rights reserved.</span>
+    <span>© 2026 JE Rosen Lab. All rights reserved.</span>
     <span>Privacy Policy · Terms of Use · Non-Discrimination Notice</span>
   </div>
 </footer>
@@ -1319,6 +1406,57 @@
     window.location.href = `mailto:genetics.referral@medstar.net?subject=${subject}&body=${body}`;
     return false;
   }
+
+  // ── PASSWORD PROTECTION ──
+  const CORRECT_PASSWORD = 'admin'; // Change this to your desired password
+  
+  function checkPassword() {
+    const input = document.getElementById('password-input');
+    const errorMsg = document.getElementById('password-error');
+    
+    if (input.value === CORRECT_PASSWORD) {
+      document.getElementById('password-modal').classList.remove('active');
+      document.getElementById('main-content').classList.remove('hidden');
+    } else {
+      errorMsg.textContent = 'Incorrect password. Please try again.';
+      input.value = '';
+      input.focus();
+    }
+  }
+  
+  // Initialize password protection on page load
+  function initPasswordProtection() {
+    const passwordInput = document.getElementById('password-input');
+    const modal = document.getElementById('password-modal');
+    const mainContent = document.getElementById('main-content');
+    
+    // Ensure modal is showing and content is hidden
+    modal.classList.add('active');
+    mainContent.classList.add('hidden');
+    
+    // Allow Enter key to submit password
+    if (passwordInput) {
+      passwordInput.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+          checkPassword();
+        }
+      });
+      // Focus on password input for immediate typing
+      setTimeout(function() {
+        passwordInput.focus();
+      }, 100);
+    }
+  }
+  
+  // Run on page load
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initPasswordProtection);
+  } else {
+    initPasswordProtection();
+  }
 </script>
+
+</div><!-- END main-content -->
+
 </body>
 </html>
